@@ -8,11 +8,6 @@ let apiKey: string
 const RESOURCE = '/ultimate-list/user'
 
 describe('Test register new user', () => {
-    
-    afterAll(async () => {
-        server.close()
-        userPool.end()
-    })
 
     test('should SIGN-UP new user', async () => {
         await request(app)
@@ -221,5 +216,10 @@ describe('Test open authentication and authorization', () => {
             .delete(`${RESOURCE}/data`)
             .set('Authorization', `Bearer ${token}`)
             .expect(200)
+    })
+
+    afterAll(async () => {
+        server.close()
+        userPool.end()
     })
 })
