@@ -11,7 +11,7 @@
     WHERE `auth_provider` = ? AND `external_id` = ?;
 
 -- getAll
-    SELECT `id`, `name`, `email`, `author`, `api_key` FROM `users` 
+    SELECT `id`, `name`, `email`, `nickname`, `api_key` FROM `users` 
     WHERE `id` = ?;
 
 -- getIdPassword
@@ -26,12 +26,12 @@
     SELECT `email` FROM `users` 
     WHERE `email` = ?;
 
--- getAuthor
-    SELECT `author` FROM `users`
-    WHERE `author` = ?;
+-- getNickname
+    SELECT `nickname` FROM `users`
+    WHERE `nickname` = ?;
 
 -- addNew
-    INSERT INTO `users` (`name`, `password`, `email`, `author`, `auth_provider`, `external_id`) 
+    INSERT INTO `users` (`name`, `password`, `email`, `nickname`, `auth_provider`, `external_id`) 
     VALUES (?, ?, ?, ?, ?, ?);
 
 -- changeExternalId
@@ -50,9 +50,9 @@
     SET `password` = ?
     WHERE `id` = ?;
 
--- changeAuthor
+-- changeNickname
     UPDATE `users` 
-    SET `author` = ?
+    SET `nickname` = ?
     WHERE `id` = ?;
 
 -- changeEmail
