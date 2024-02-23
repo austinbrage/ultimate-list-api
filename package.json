@@ -4,7 +4,7 @@
   "description": "RESTful API for management of user and their ideas, knowledge and projects",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "add-queries:ts": "node node_modules/dynamic-sql/src/index_types"
   },
   "keywords": [
     "Management",
@@ -24,6 +24,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "dynamic-sql": "^0.1.3",
     "express": "^4.18.2",
     "mysql2": "^3.9.1",
     "zod": "^3.22.4"
