@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { userSchema, authSchema } from '../schemas/users'
 import { type RowDataPacket } from 'mysql2'
+import { AsyncFunction } from '../services/errorHandler'
 
 export type UserType = {
     id: z.infer<typeof userSchema.id>
@@ -36,4 +37,18 @@ export interface IUser {
     changeExternalID({ auth_provider, external_id, email }: UserType['authEmail']): Promise<RowDataPacket[]>
     addNew({ name, password, email, nickname, auth_provider, external_id }: UserType['fullData']): Promise<number>
     remove({ id }: UserType['id']): Promise<RowDataPacket[]>
+}
+
+
+export interface UserController {
+    getId: AsyncFunction
+    getAll: AsyncFunction
+    getPassword: AsyncFunction
+    changeName: AsyncFunction
+    changeEmail: AsyncFunction
+    changeNickname: AsyncFunction
+    changePassword: AsyncFunction
+    remove: AsyncFunction
+    addNew: AsyncFunction
+    openAuth: AsyncFunction
 }
