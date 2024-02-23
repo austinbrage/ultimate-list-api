@@ -4,7 +4,8 @@
   "description": "RESTful API for management of user and their ideas, knowledge and projects",
   "main": "server.js",
   "scripts": {
-    "add-queries:ts": "node node_modules/dynamic-sql/src/index_types"
+    "add-queries:ts": "node node_modules/dynamic-sql/src/index_types",
+    "test:users": "cross-env NODE_ENV=test jest users.test.ts" 
   },
   "keywords": [
     "Management",
