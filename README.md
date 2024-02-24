@@ -17,6 +17,11 @@ The API relies on headers, sending the signed token within the response body and
 | ------ | ------ |
 | **`/ultimate-list`** | API Version 1 |
 
+| Endpoint | Queries | Description | 
+| ------ | ------ | ------ |
+| **GET ***`/ping/api`***** | none | Verify API connection |
+| **GET ***`/ping/database`***** | none | Verify DB connection |
+
 ## User Routes
 
 | Endpoint | Queries | Description | 
