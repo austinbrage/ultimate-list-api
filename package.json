@@ -1,6 +1,6 @@
 {
   "name": "ultimate-list-api",
-  "version": "0.2.1",
+  "version": "0.3.1",
   "description": "RESTful API for management of user and their ideas, knowledge and projects",
   "main": "server.js",
   "scripts": {
