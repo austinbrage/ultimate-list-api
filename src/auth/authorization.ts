@@ -8,7 +8,7 @@ const createAuthorization = () => {
     const authMiddleware: RequestHandler = async (req, _res, next) => {
         const authContent = req.headers.authorization
 
-        if(!authContent) return next(new CustomError('Missing Authorization Header', 404))
+        if(!authContent) return next(new CustomError('Missing Authorization Header', 401))
 
         const token = authContent.split(' ')[1]
 
