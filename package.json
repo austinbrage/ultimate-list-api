@@ -10,7 +10,8 @@
     "add-queries:ts": "node node_modules/dynamic-sql/src/index_types",
     "lint": "eslint ./src/**/*.{js,ts}",
     "ts-check": "tsc -p tsconfig.json --noEmit",
-    "test:users": "cross-env NODE_ENV=test jest users.test.ts"
+    "test:users": "cross-env NODE_ENV=test jest users.test.ts",
+    "test:knowledge": "cross-env NODE_ENV=test jest knowledge.test.ts"
   },
   "keywords": [
     "Management",
