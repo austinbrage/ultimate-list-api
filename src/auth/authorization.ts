@@ -17,6 +17,11 @@ const createAuthorization = () => {
     
         try {
             const verifyUser = await verify(token, SECRET_KEY) as JwtPayload
+
+            if(!verifyUser?.id || isNaN(verifyUser?.id)) {
+                return next(new CustomError('Token does not contain a valid user ID', 401))
+            }
+
             req.userId = { id: verifyUser.id }
             next()
         } catch(err) {
