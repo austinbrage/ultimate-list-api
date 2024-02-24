@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { app, server, userPool } from './../../server'
+import { app, server, userPool, knowledgePool } from './../../server'
 import { userMock } from './../fixtures/userData'
 
 let token: string
@@ -221,5 +221,6 @@ describe('Test open authentication and authorization', () => {
     afterAll(async () => {
         server.close()
         userPool.end()
+        knowledgePool.end()
     })
 })
