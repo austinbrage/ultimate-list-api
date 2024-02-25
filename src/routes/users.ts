@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { USER as U } from '../types/allRoutes'
 import { Users as UserController } from '../controllers/Users'
 import createAuthorization from '../auth/authorization'
 import { type IUser } from '../types/users'
@@ -9,19 +10,19 @@ const createUserRouter = ({ userModel }: { userModel: IUser }) => {
     const userAuth = createAuthorization()
     const userController = new UserController({ userModel })
     
-    userRouter.get('/data',       userAuth, userController.getAll)
+    userRouter.get(U.DATA,       userAuth, userController.getAll)
     
-    userRouter.patch('/name',     userAuth, userController.changeName)
-    userRouter.patch('/email',    userAuth, userController.changeEmail)
-    userRouter.patch('/nickname', userAuth, userController.changeNickname)
-    userRouter.patch('/password', userAuth, userController.changePassword)
+    userRouter.patch(U.NAME,     userAuth, userController.changeName)
+    userRouter.patch(U.EMAIL,    userAuth, userController.changeEmail)
+    userRouter.patch(U.NICKNAME, userAuth, userController.changeNickname)
+    userRouter.patch(U.PASSWORD, userAuth, userController.changePassword)
     
-    userRouter.post('/register',  userController.addNew)
-    userRouter.post('/login',     userController.getPassword)
-    userRouter.post('/oauth',     userController.openAuth)
-    userRouter.post('/key',       userController.getId)
+    userRouter.post(U.REGISTER,  userController.addNew)
+    userRouter.post(U.LOGIN,     userController.getPassword)
+    userRouter.post(U.OAUTH,     userController.openAuth)
+    userRouter.post(U.KEY,       userController.getId)
 
-    userRouter.delete('/data',    userAuth, userController.remove)
+    userRouter.delete(U.DATA,    userAuth, userController.remove)
 
     return userRouter
 }

@@ -1,4 +1,5 @@
 import { Router } from "express"
+import { KNOWLEDGE as K } from "../types/allRoutes"
 import { Knowledge as KnowledgeController } from "../controllers/Knowledge"
 import createAuthorization from "../auth/authorization"
 import type { IKnowledge } from "../types/knowledge"
@@ -9,16 +10,16 @@ const createKnowledgeRouter = ({ knowledgeModel }: { knowledgeModel: IKnowledge 
     const userAuth = createAuthorization()
     const knowledgeController = new KnowledgeController({ knowledgeModel })
 
-    knowledgeRouter.get('/data',          userAuth, knowledgeController.getAll)
+    knowledgeRouter.get(K.DATA,          userAuth, knowledgeController.getAll)
 
-    knowledgeRouter.patch('/description', userAuth, knowledgeController.changeDescription)
-    knowledgeRouter.patch('/priority',    userAuth, knowledgeController.changePriority)
-    knowledgeRouter.patch('/type',        userAuth, knowledgeController.changeType)
-    knowledgeRouter.patch('/name',        userAuth, knowledgeController.changeName)
+    knowledgeRouter.patch(K.DESCRIPTION, userAuth, knowledgeController.changeDescription)
+    knowledgeRouter.patch(K.PRIORITY,    userAuth, knowledgeController.changePriority)
+    knowledgeRouter.patch(K.TYPE,        userAuth, knowledgeController.changeType)
+    knowledgeRouter.patch(K.NAME,        userAuth, knowledgeController.changeName)
 
-    knowledgeRouter.post('/data',         userAuth, knowledgeController.addNew)
+    knowledgeRouter.post(K.DATA,         userAuth, knowledgeController.addNew)
     
-    knowledgeRouter.delete('/data',       userAuth, knowledgeController.remove)
+    knowledgeRouter.delete(K.DATA,       userAuth, knowledgeController.remove)
 
     return knowledgeRouter
 }
