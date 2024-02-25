@@ -49,7 +49,6 @@ The API relies on headers, sending the signed token within the response body and
 | **PATCH ***`/knowledge/description`***** | id, description, **token** | Change knowledge description |
 | **DELETE ***`/knowledge/data`***** | id, **token** | Remove knowledge |
 
-
 ## Knowledge Concepts Routes
 
 | Endpoint | Queries | Description | 
@@ -61,3 +60,15 @@ The API relies on headers, sending the signed token within the response body and
 | **PATCH ***`/concept/priority`***** | id, priority, **token** | Change concept priority |
 | **PATCH ***`/concept/description`***** | id, description, **token** | Change concept description |
 | **DELETE ***`/concept/data`***** | id, **token** | Remove concept |
+
+## Research Routes
+
+| Endpoint | Queries | Description | 
+| ------ | ------ | ------ |
+| **GET ***`/research/data`***** | **token** | Get all data from research |
+| **POST ***`/research/data`***** | name, type, priority, description, **token** | Add new research |
+| **PATCH ***`/research/name`***** | id, name, **token** | Change research name |
+| **PATCH ***`/research/type`***** | id, type, **token** | Change research type |
+| **PATCH ***`/research/priority`***** | id, priority, **token** | Change research priority |
+| **PATCH ***`/research/description`***** | id, description, **token** | Change research description |
+| **DELETE ***`/research/data`***** | id, **token** | Remove research |
