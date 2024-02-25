@@ -6,6 +6,7 @@ export enum RESOURCES {
     PING = '/ping',
     USER = '/user',
     CONCEPT = '/concept',
+    RESEARCH = '/research',
     KNOWLEDGE = '/knowledge'
 }
 
@@ -30,6 +31,14 @@ export enum KNOWLEDGE {
 }
 
 export enum CONCEPT {
+    DATA = '/data',
+    NAME = '/name',
+    TYPE = '/type',
+    PRIORITY = '/priority',
+    DESCRIPTION = '/description'
+}
+
+export enum RESEARCH {
     DATA = '/data',
     NAME = '/name',
     TYPE = '/type',
