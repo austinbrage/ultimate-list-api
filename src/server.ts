@@ -1,6 +1,7 @@
 import createApp from './app'
 import UserModel from './models/User'
 import KnowledgeModel from './models/Knowledge'
+import ConceptModel from './models/Concept'
 import { PORT, ENVIRONMENT } from './utils/config'
 import { createPoolConnection } from './services/database'
 
@@ -15,8 +16,9 @@ const knowledgePool = createPoolConnection()
 
 const userModel = new UserModel({ userPool })
 const knowledgeModel = new KnowledgeModel({ knowledgePool })
+const conceptModel = new ConceptModel({ conceptPool: knowledgePool })
 
-const app = createApp({ userModel, knowledgeModel, pingPool })
+const app = createApp({ userModel, knowledgeModel, conceptModel, pingPool })
 
 const server = app.listen(PORT[ENVIRONMENT], () => {
     console.log(`Server running on Port: ${PORT[ENVIRONMENT]}`)
