@@ -36,8 +36,23 @@ CREATE TABLE `knowledge_concepts` (
  	`knowledge_id`         INT NOT NULL,
  	`priority`             INT NOT NULL DEFAULT 1,	
  	`type`                 VARCHAR(250) NOT NULL DEFAULT 'Core concept', 	
- 	`name`                 VARCHAR(250) NOT NULL DEFAULT 'unnamed idea',
+ 	`name`                 VARCHAR(250) NOT NULL DEFAULT 'Unnamed concept',
  	`description`          TEXT NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
  	UNIQUE KEY             `knowledge_id_name_unique` (`knowledge_id`,`name`),
  	FOREIGN KEY            (`knowledge_id`) REFERENCES `knowledge`(`id`) ON DELETE CASCADE 
 ); 
+
+-- 04 Researchs Table
+CREATE TABLE `researchs` (
+ 	`id`                   INT AUTO_INCREMENT PRIMARY KEY,
+ 	`user_id`              INT NOT NULL,
+ 	`priority`             INT NOT NULL DEFAULT 1,
+ 	`type`                 VARCHAR(250) NOT NULL DEFAULT 'Frontend', 
+ 	`name`                 VARCHAR(250) NOT NULL DEFAULT 'Unnamed research',
+ 	`description`          TEXT NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
+ 	`created_at`           TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`           TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ 	UNIQUE KEY             `user_id_name_unique` (`user_id`,`name`),
+ 	FOREIGN KEY            (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE 
+);
+
