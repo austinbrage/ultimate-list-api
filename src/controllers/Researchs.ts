@@ -8,11 +8,11 @@ import type { ZodError } from 'zod'
 
 export class Researchs implements ResearchController {
     private researchModel: IResearch
-    private validateresearch: IResearchValidation
+    private validateResearch: IResearchValidation
 
     constructor({ researchModel }: { researchModel: IResearch }) {
         this.researchModel = researchModel
-        this.validateresearch = new ResearchValidation()
+        this.validateResearch = new ResearchValidation()
     }
 
     private validationErr(res: Response, validationError: ZodError<unknown>) {
@@ -24,7 +24,7 @@ export class Researchs implements ResearchController {
 
     getAll = asyncErrorHandler(async (req: Request, res: Response) => {
         // const { user_id } = req.query 
-        const validation = this.validateresearch.userId({ user_id: req?.userId.id })
+        const validation = this.validateResearch.userId({ user_id: req?.userId.id })
 
         if(!validation.success) {
             return res.status(400).json(createErrorResponse({
@@ -42,7 +42,7 @@ export class Researchs implements ResearchController {
 
     changePriority = asyncErrorHandler(async (req: Request, res: Response) => {
         // const { id, priority } = req.body
-        const validation = this.validateresearch.idPriority(req.body)
+        const validation = this.validateResearch.idPriority(req.body)
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
@@ -55,7 +55,7 @@ export class Researchs implements ResearchController {
 
     changeType = asyncErrorHandler(async (req: Request, res: Response) => {
         // const { id, type } = req.body
-        const validation = this.validateresearch.idType(req.body)
+        const validation = this.validateResearch.idType(req.body)
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
@@ -68,7 +68,7 @@ export class Researchs implements ResearchController {
 
     changeName = asyncErrorHandler(async (req: Request, res: Response) => {
         // const { id, name } = req.body
-        const validation = this.validateresearch.idName(req.body)
+        const validation = this.validateResearch.idName(req.body)
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
@@ -92,7 +92,7 @@ export class Researchs implements ResearchController {
 
     changeDescription = asyncErrorHandler(async (req: Request, res: Response) => {
         // const { id, description } = req.body
-        const validation = this.validateresearch.idDescription(req.body)
+        const validation = this.validateResearch.idDescription(req.body)
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
@@ -105,7 +105,7 @@ export class Researchs implements ResearchController {
 
     addNew = asyncErrorHandler(async (req: Request, res: Response) => {
         // const { user_id, type, name, priority, description } = req.body
-        const validation = this.validateresearch.fullData({ user_id: req?.userId.id, ...req.body})
+        const validation = this.validateResearch.fullData({ user_id: req?.userId.id, ...req.body})
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
@@ -118,7 +118,7 @@ export class Researchs implements ResearchController {
 
     remove = asyncErrorHandler(async (req: Request, res: Response) => {
         // const { id } = req.body
-        const validation = this.validateresearch.id(req.body)
+        const validation = this.validateResearch.id(req.body)
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
