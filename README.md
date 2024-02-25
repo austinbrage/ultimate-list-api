@@ -48,3 +48,16 @@ The API relies on headers, sending the signed token within the response body and
 | **PATCH ***`/knowledge/priority`***** | id, priority, **token** | Change knowledge priority |
 | **PATCH ***`/knowledge/description`***** | id, description, **token** | Change knowledge description |
 | **DELETE ***`/knowledge/data`***** | id, **token** | Remove knowledge |
+
+
+## Knowledge Concepts Routes
+
+| Endpoint | Queries | Description | 
+| ------ | ------ | ------ |
+| **GET ***`/concept/data`***** | **token** | Get all data from concept |
+| **POST ***`/concept/data`***** | knowledge_id, name, type, priority, description, **token** | Add new concept |
+| **PATCH ***`/concept/name`***** | knowledge_id, id, name, **token** | Change concept name |
+| **PATCH ***`/concept/type`***** | id, type, **token** | Change concept type |
+| **PATCH ***`/concept/priority`***** | id, priority, **token** | Change concept priority |
+| **PATCH ***`/concept/description`***** | id, description, **token** | Change concept description |
+| **DELETE ***`/concept/data`***** | id, **token** | Remove concept |
