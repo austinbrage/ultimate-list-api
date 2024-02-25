@@ -23,7 +23,7 @@ CREATE TABLE `knowledge` (
  	`priority`             INT NOT NULL DEFAULT 1,
  	`type`                 VARCHAR(250) NOT NULL DEFAULT 'Frontend', 	
  	`name`                 VARCHAR(250) NOT NULL DEFAULT 'Unnamed knowledge',
- 	`description`          VARCHAR(250) NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
+ 	`description`          TEXT NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
  	`created_at`           TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at`           TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
  	UNIQUE KEY             `user_id_name_unique` (`user_id`,`name`),
@@ -37,7 +37,7 @@ CREATE TABLE `knowledge_concepts` (
  	`priority`             INT NOT NULL DEFAULT 1,	
  	`type`                 VARCHAR(250) NOT NULL DEFAULT 'Core concept', 	
  	`name`                 VARCHAR(250) NOT NULL DEFAULT 'unnamed idea',
- 	`description`          VARCHAR(250) NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
+ 	`description`          TEXT NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
  	UNIQUE KEY             `knowledge_id_name_unique` (`knowledge_id`,`name`),
  	FOREIGN KEY            (`knowledge_id`) REFERENCES `knowledge`(`id`) ON DELETE CASCADE 
 ); 
