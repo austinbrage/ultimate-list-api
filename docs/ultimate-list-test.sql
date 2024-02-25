@@ -29,3 +29,15 @@ CREATE TABLE `knowledge` (
  	UNIQUE KEY             `user_id_name_unique` (`user_id`,`name`),
  	FOREIGN KEY            (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE 
 ); 
+
+-- 03 Knowledge Concepts Table
+CREATE TABLE `knowledge_concepts` (
+ 	`id`                   INT AUTO_INCREMENT PRIMARY KEY,
+ 	`knowledge_id`         INT NOT NULL,
+ 	`priority`             INT NOT NULL DEFAULT 1,	
+ 	`type`                 VARCHAR(250) NOT NULL DEFAULT 'Core concept', 	
+ 	`name`                 VARCHAR(250) NOT NULL DEFAULT 'unnamed idea',
+ 	`description`          VARCHAR(250) NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
+ 	UNIQUE KEY             `knowledge_id_name_unique` (`knowledge_id`,`name`),
+ 	FOREIGN KEY            (`knowledge_id`) REFERENCES `knowledge`(`id`) ON DELETE CASCADE 
+); 
