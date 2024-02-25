@@ -1,29 +1,26 @@
 import request from 'supertest'
-import { userMock } from "../fixtures/userData"
-import { knowledgeMock } from "../fixtures/knowledgeData"
-import { conceptMock } from '../fixtures/conceptData'
+import { USER, KNOWLEDGE, CONCEPT } from '../../types/allRoutes'
+import { userMock, userRoutes } from "../fixtures/userData"
+import { knowledgeMock, knowledgeRoutes } from "../fixtures/knowledgeData"
+import { conceptMock, conceptRoutes } from '../fixtures/conceptData'
 import { app, server, userPool, knowledgePool } from '../../server'
 
 let token: string
 let conceptId: number
 let knowledgeId: number
 
-const RESOURCE = '/ultimate-list/concept'
-const USER_RESOURCE = '/ultimate-list/user'
-const KNOWLEDGE_RESOURCE = '/ultimate-list/knowledge'
-
 describe('Setup: Get access token from user sign up and in', () => { 
     
     test('should SIGN-UP new user', async () => {
         await request(app)
-            .post(`${USER_RESOURCE}/register`)
+            .post(userRoutes(USER.REGISTER))
             .send(userMock.signUp)
             .expect(201)
     })
 
     test('should LOGIN to users account', async () => {
         const response = await request(app)
-            .post(`${USER_RESOURCE}/login`)
+            .post(userRoutes(USER.LOGIN))
             .send(userMock.rightData)
             .expect(200)
         token = response.body.result.token
@@ -35,7 +32,7 @@ describe('Setup: Post new knowledge card and get the id', () => {
 
     test('should POST new knowledge card', async () => {
         await request(app)
-            .post(`${KNOWLEDGE_RESOURCE}/data`)
+            .post(knowledgeRoutes(KNOWLEDGE.DATA))
             .set('Authorization', `Bearer ${token}`)
             .send(knowledgeMock.newData)
             .expect(201)
@@ -43,7 +40,7 @@ describe('Setup: Post new knowledge card and get the id', () => {
 
     test('should READ and GET ID from new knowledge card', async () => {
         const response = await request(app)
-            .get(`${KNOWLEDGE_RESOURCE}/data`)
+            .get(knowledgeRoutes(KNOWLEDGE.DATA))
             .set('Authorization', `Bearer ${token}`)
             .expect(200)
         knowledgeId = response.body?.result?.data[0]?.id
@@ -55,7 +52,7 @@ describe('Test create and read new knowledge concept', () => {
 
     test('should POST new knowledge concept', async () => {
         await request(app)
-            .post(`${RESOURCE}/data`)
+            .post(conceptRoutes(CONCEPT.DATA))
             .set('Authorization', `Bearer ${token}`)
             .send(conceptMock.newData(knowledgeId))
             .expect(201)
@@ -63,7 +60,7 @@ describe('Test create and read new knowledge concept', () => {
 
     test('should READ and GET ID from new knowledge concept', async () => {
         const response = await request(app)
-            .get(`${RESOURCE}/data`)
+            .get(conceptRoutes(CONCEPT.DATA))
             .set('Authorization', `Bearer ${token}`)
             .query(conceptMock.knowledgeId(knowledgeId))
             .expect(200)
@@ -82,7 +79,7 @@ describe('Test update new knowledge concept', () => {
 
     test('should PATCH NAME of new concept', async () => {
         await request(app)
-            .patch(`${RESOURCE}/name`)
+            .patch(conceptRoutes(CONCEPT.NAME))
             .set('Authorization', `Bearer ${token}`)
             .send(conceptMock.name(conceptId, knowledgeId))
             .expect(200)
@@ -90,7 +87,7 @@ describe('Test update new knowledge concept', () => {
 
     test('should PATCH TYPE of new concept', async () => {
         await request(app)
-            .patch(`${RESOURCE}/type`)
+            .patch(conceptRoutes(CONCEPT.TYPE))
             .set('Authorization', `Bearer ${token}`)
             .send(conceptMock.type(conceptId))
             .expect(200)
@@ -98,7 +95,7 @@ describe('Test update new knowledge concept', () => {
 
     test('should PATCH PRIORITY of new concept', async () => {
         await request(app)
-            .patch(`${RESOURCE}/priority`)
+            .patch(conceptRoutes(CONCEPT.PRIORITY))
             .set('Authorization', `Bearer ${token}`)
             .send(conceptMock.priority(conceptId))
             .expect(200)
@@ -106,7 +103,7 @@ describe('Test update new knowledge concept', () => {
 
     test('should PATCH DESCRIPTION of new concept', async () => {
         await request(app)
-            .patch(`${RESOURCE}/description`)
+            .patch(conceptRoutes(CONCEPT.DESCRIPTION))
             .set('Authorization', `Bearer ${token}`)
             .send(conceptMock.description(conceptId))
             .expect(200)
@@ -114,7 +111,7 @@ describe('Test update new knowledge concept', () => {
 
     test('should READ and GET ID from new knowledge concept', async () => {
         const response = await request(app)
-            .get(`${RESOURCE}/data`)
+            .get(conceptRoutes(CONCEPT.DATA))
             .set('Authorization', `Bearer ${token}`)
             .query(conceptMock.knowledgeId(knowledgeId))
             .expect(200)
@@ -130,7 +127,7 @@ describe('Test delete new knowledge concept', () => {
 
     test('should DELETE new knowledge concept', async () => {
         await request(app)
-            .delete(`${RESOURCE}/data`)
+            .delete(conceptRoutes(CONCEPT.DATA))
             .set('Authorization', `Bearer ${token}`)
             .send(conceptMock.id(conceptId))
             .expect(200)
@@ -138,7 +135,7 @@ describe('Test delete new knowledge concept', () => {
 
     test('should READ no data from deleted knowledge concept', async () => {
         const response = await request(app)
-            .get(`${RESOURCE}/data`)
+            .get(conceptRoutes(CONCEPT.DATA))
             .set('Authorization', `Bearer ${token}`)
             .query(conceptMock.knowledgeId(knowledgeId))
             .expect(200)
@@ -152,7 +149,7 @@ describe('Delete new user for next tests', () => {
 
     test('should DELETE new user', async () => {
         await request(app)
-            .delete(`${USER_RESOURCE}/data`)
+            .delete(userRoutes(USER.DATA))
             .set('Authorization', `Bearer ${token}`)
             .expect(200)
     })

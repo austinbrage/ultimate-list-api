@@ -1,4 +1,7 @@
+import { APP, RESOURCES, type CONCEPT } from "../../types/allRoutes"
 import { type ConceptTypes } from "../../types/concepts"
+
+type ConceptRoutes = (route: CONCEPT) => string
 
 type ConceptMock = {
     newData: (knowledgeId: number) =>Omit<ConceptTypes['fullData'], "user_id">
@@ -9,6 +12,10 @@ type ConceptMock = {
     description: (conceptId: number) => ConceptTypes['idDescription']
     knowledgeId: (knowledgeId: number) => ConceptTypes['knowledgeId']
     id: (conceptId: number) => ConceptTypes['id']
+}
+
+export const conceptRoutes: ConceptRoutes = (route) => {
+    return `${APP.VERSION_1}${RESOURCES.CONCEPT}${route}`
 }
 
 export const conceptMock: ConceptMock = {

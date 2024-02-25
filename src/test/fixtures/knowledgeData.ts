@@ -1,4 +1,7 @@
+import { APP, RESOURCES, type KNOWLEDGE } from "../../types/allRoutes"
 import { type KnowledgeTypes } from "../../types/knowledge"
+
+type KnowledgeRoutes = (route: KNOWLEDGE) => string
 
 type KnowledgeMock = {
     newData: Omit<KnowledgeTypes['fullData'], "user_id">
@@ -8,6 +11,10 @@ type KnowledgeMock = {
     priority: (knowledgeId: number) => KnowledgeTypes['idPriority']
     description: (knowledgeId: number) => KnowledgeTypes['idDescription']
     id: (knowledgeId: number) => KnowledgeTypes['id']
+}
+
+export const knowledgeRoutes: KnowledgeRoutes = (route) => {
+    return `${APP.VERSION_1}${RESOURCES.KNOWLEDGE}${route}`
 }
 
 export const knowledgeMock: KnowledgeMock = {

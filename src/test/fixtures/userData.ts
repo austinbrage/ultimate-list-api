@@ -1,4 +1,7 @@
+import { APP, RESOURCES, type USER } from "../../types/allRoutes"
 import { type UserType } from "../../types/users"
+
+type UserRoutes = (route: USER) => string
 
 type UserMock = {
     signUp: UserType['data']
@@ -11,6 +14,10 @@ type UserMock = {
     newData: Omit<UserType['data'], "password">
     userData: Omit<UserType['data'], "password">
     fakeOAuth: UserType['authInfoData']
+}
+
+export const userRoutes: UserRoutes = (route) => {
+    return `${APP.VERSION_1}${RESOURCES.USER}${route}`
 }
 
 export const userMock: UserMock = {
