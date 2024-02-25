@@ -1,4 +1,4 @@
-import express, { json } from 'express'
+import express, { json, Router } from 'express'
 import createUserRouter from './routes/users'
 import createConceptRouter from './routes/concepts'
 import createKnowledgeRouter from './routes/knowledge'
@@ -6,6 +6,7 @@ import createHealthcareRouter from './routes/healthcare'
 import corsMiddleware from './middlewares/cors'
 import errorMiddleware from './middlewares/error'
 import { notFoundHandler } from './services/notFoundHandler'
+import { APP, RESOURCES } from './types/allRoutes'
 import { type IKnowledge } from './types/knowledge' 
 import { type IConcept } from './types/concepts'
 import { type IUser } from './types/users'
@@ -20,16 +21,19 @@ type ModelsType = {
 
 const createApp = ({ userModel, knowledgeModel, conceptModel, pingPool }: ModelsType) => {
     const app = express()
+    const mainRouter = Router()
 
     app.use(json())
     app.use(corsMiddleware())
     app.disable('x-powered-by')
     
-    app.use('/ultimate-list/ping',          createHealthcareRouter({ pingPool }))
-    app.use('/ultimate-list/user',          createUserRouter({ userModel }))
-    app.use('/ultimate-list/knowledge',     createKnowledgeRouter({ knowledgeModel }))
-    app.use('/ultimate-list/concept',       createConceptRouter({ conceptModel }))
+    mainRouter.use(RESOURCES.PING,          createHealthcareRouter({ pingPool }))
+    mainRouter.use(RESOURCES.USER,          createUserRouter({ userModel }))
+    mainRouter.use(RESOURCES.CONCEPT,       createConceptRouter({ conceptModel }))
+    mainRouter.use(RESOURCES.KNOWLEDGE,     createKnowledgeRouter({ knowledgeModel }))
     
+    app.use(APP.VERSION_1, mainRouter)
+
     app.all('*', notFoundHandler)
     app.use(errorMiddleware)
 
