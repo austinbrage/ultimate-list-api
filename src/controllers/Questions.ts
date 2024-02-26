@@ -45,16 +45,26 @@ export class Questions implements QuestionController {
     })    
 
     changeName = asyncErrorHandler(async (req: Request, res: Response) => {
-        // const { id, name } = req.body 
+        // const { research_id, id, name } = req.body 
         const validation = this.validateQuestion.idName(req.body)
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
-        const result = await this.questionModel.changeName(validation.data)
+        const result = await this.questionModel.getName({ 
+            research_id: validation.data.research_id,  
+            name: validation.data.name
+        })
+
+        if(result.length !== 0) {
+            return res.status(401).json(createErrorResponse({
+                message: 'Existing research question name'
+            }))
+        }
+
+        await this.questionModel.changeName(validation.data)
 
         return res.status(200).json(createOkResponse({
-            message: 'Research question name changed successfully',
-            data: result
+            message: 'Research question name changed successfully'
         }))
     })    
 

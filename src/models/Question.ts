@@ -21,6 +21,18 @@ class Question implements IQuestion {
         return rows as RowDataPacket[]
     }
 
+    getName = async ({ research_id, name }: QuestionTypes['researchIdName']) => {
+        const connection = await this.pool.getConnection()
+
+        const [rows] = await connection.execute(
+            questionsQueries.getName,
+            [research_id, name]
+        )
+
+        connection.release()
+        return rows as RowDataPacket[]
+    }
+
     changeName = async ({ id, name }: QuestionTypes['idName']) => {
         const connection = await this.pool.getConnection()
 

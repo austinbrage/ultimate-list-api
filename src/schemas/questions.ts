@@ -25,9 +25,10 @@ export const researchQuestionTableSchema = z.object({
 
 const id = researchQuestionTableSchema.pick({ id: true })
 const researchId = researchQuestionTableSchema.pick({ research_id: true })
-const idName = researchQuestionTableSchema.pick({ id: true, name: true })
+const idName = researchQuestionTableSchema.pick({ research_id: true, id: true, name: true })
 const idPriority = researchQuestionTableSchema.pick({ id: true, priority: true })
 const idDescription = researchQuestionTableSchema.pick({ id: true, description: true })
+const researchIdName = researchQuestionTableSchema.pick({ research_id: true, name: true })
 const fullData = researchQuestionTableSchema.omit({ id: true })
 
 export const questionSchema = {
@@ -36,6 +37,7 @@ export const questionSchema = {
     idName, 
     idPriority,
     idDescription, 
+    researchIdName,
     fullData
 }
 
