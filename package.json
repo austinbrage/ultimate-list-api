@@ -13,7 +13,8 @@
     "test:users": "cross-env NODE_ENV=test jest users.test.ts",
     "test:concepts": "cross-env NODE_ENV=test jest concepts.test.ts",
     "test:knowledge": "cross-env NODE_ENV=test jest knowledge.test.ts",
-    "test:researchs": "cross-env NODE_ENV=test jest researchs.test.ts"
+    "test:researchs": "cross-env NODE_ENV=test jest researchs.test.ts",
+    "test:questions": "cross-env NODE_ENV=test jest questions.test.ts"
   },
   "keywords": [
     "Management",
