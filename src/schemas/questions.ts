@@ -30,6 +30,7 @@ const idPriority = researchQuestionTableSchema.pick({ id: true, priority: true }
 const idDescription = researchQuestionTableSchema.pick({ id: true, description: true })
 const researchIdName = researchQuestionTableSchema.pick({ research_id: true, name: true })
 const fullData = researchQuestionTableSchema.omit({ id: true })
+const data = researchQuestionTableSchema.omit({ id: true, priority: true })
 
 export const questionSchema = {
     id, 
@@ -38,7 +39,8 @@ export const questionSchema = {
     idPriority,
     idDescription, 
     researchIdName,
-    fullData
+    fullData,
+    data
 }
 
 const researchQuestionQuerySchema = z.object({

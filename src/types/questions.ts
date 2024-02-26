@@ -10,6 +10,7 @@ export type QuestionTypes = {
     idPriority: z.infer<typeof questionSchema.idPriority>
     idDescription: z.infer<typeof questionSchema.idDescription>
     fullData: z.infer<typeof questionSchema.fullData>
+    data: z.infer<typeof questionSchema.data>
     researchIdName: z.infer<typeof questionSchema.researchIdName>
     researchIdQuery: z.infer<typeof questionQuerySchema.researchIdQuery>
 }
@@ -17,10 +18,11 @@ export type QuestionTypes = {
 export interface IQuestion {
     getAll({ research_id }: QuestionTypes['researchId']): Promise<RowDataPacket[]>
     getName({ research_id, name }: QuestionTypes['researchIdName']): Promise<RowDataPacket[]>
+    getPriority({ research_id }: QuestionTypes['researchId']): Promise<RowDataPacket[]>
     changeName({ research_id, id, name }: QuestionTypes['idName']): Promise<RowDataPacket[]>
     changePriority({ id, priority }: QuestionTypes['idPriority']): Promise<RowDataPacket[]>
     changeDescription({ id, description }: QuestionTypes['idDescription']): Promise<RowDataPacket[]>
-    addNew({ research_id, name, description }: QuestionTypes['fullData']): Promise<RowDataPacket[]>
+    addNew({ research_id, name, priority, description }: QuestionTypes['fullData']): Promise<RowDataPacket[]>
     remove({ id }: QuestionTypes['id']): Promise<RowDataPacket[]>
 }
 

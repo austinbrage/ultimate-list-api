@@ -4,11 +4,11 @@ import { type SafeParseReturnType } from 'zod'
 
 export interface IQuestionValidation {
     id(data: unknown): SafeParseReturnType<unknown, QuestionTypes['id']> 
+    data(data: unknown): SafeParseReturnType<unknown, QuestionTypes['data']> 
     researchId(data: unknown): SafeParseReturnType<unknown, QuestionTypes['researchId']> 
     idName(data: unknown): SafeParseReturnType<unknown, QuestionTypes['idName']> 
     idPriority(data: unknown): SafeParseReturnType<unknown, QuestionTypes['idPriority']> 
     idDescription(data: unknown): SafeParseReturnType<unknown, QuestionTypes['idDescription']> 
-    fullData(data: unknown): SafeParseReturnType<unknown, QuestionTypes['fullData']> 
     researchIdQuery(data: unknown): SafeParseReturnType<unknown, QuestionTypes['researchIdQuery']> 
 }
 
@@ -22,10 +22,10 @@ export class QuestionValidation implements IQuestionValidation {
     }
 
     id = (data: unknown) => this.questionSchema.id.safeParse(data)
+    data = (data: unknown) => this.questionSchema.data.safeParse(data)
     researchId = (data: unknown) => this.questionSchema.researchId.safeParse(data)
     idName = (data: unknown) => this.questionSchema.idName.safeParse(data)
     idPriority = (data: unknown) => this.questionSchema.idPriority.safeParse(data)
     idDescription = (data: unknown) => this.questionSchema.idDescription.safeParse(data)
-    fullData = (data: unknown) => this.questionSchema.fullData.safeParse(data)
     researchIdQuery = (data: unknown) => this.questionQuerySchema.researchIdQuery.safeParse(data)
 }

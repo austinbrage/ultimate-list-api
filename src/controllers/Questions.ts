@@ -95,8 +95,8 @@ export class Questions implements QuestionController {
     })    
 
     addNew = asyncErrorHandler(async (req: Request, res: Response) => {
-        // const { research_id, name, priority, description } = req.body
-        const validation = this.validateQuestion.fullData(req.body)
+        // const { research_id, name, description } = req.body
+        const validation = this.validateQuestion.data(req.body)
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
@@ -111,7 +111,13 @@ export class Questions implements QuestionController {
             }))
         }
 
-        await this.questionModel.addNew(validation.data)
+        const resultPriority = await this.questionModel.getPriority({
+            research_id: validation.data.research_id
+        })
+
+        const lastPriority = resultPriority[0]?.priority + 1 ?? 1
+
+        await this.questionModel.addNew({...validation.data, priority: lastPriority})
 
         return res.status(201).json(createOkResponse({
             message: 'New research question created successfully'

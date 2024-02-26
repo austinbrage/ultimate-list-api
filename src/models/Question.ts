@@ -33,6 +33,18 @@ class Question implements IQuestion {
         return rows as RowDataPacket[]
     }
 
+    getPriority = async ({ research_id }: QuestionTypes['researchId']) => {
+        const connection = await this.pool.getConnection()
+
+        const [rows] = await connection.execute(
+            questionsQueries.getLastPriority,
+            [research_id]
+        )
+
+        connection.release()
+        return rows as RowDataPacket[]
+    }
+
     changeName = async ({ id, name }: QuestionTypes['idName']) => {
         const connection = await this.pool.getConnection()
 
