@@ -58,7 +58,7 @@ describe('Test create and read new question item', () => {
         await request(app)
             .post(questionRoutes(QUESTION.DATA))
             .set('Authorization', `Bearer ${token}`)
-            .send(questionMock.newData(researchId))
+            .send(questionMock.newData1(researchId))
             .expect(201)
     })
 
@@ -71,7 +71,7 @@ describe('Test create and read new question item', () => {
         questionId = response.body?.result?.data[0]?.id
 
         expect(response.body.result.data[0]).toEqual(
-            expect.objectContaining(questionMock.newData(researchId))
+            expect.objectContaining(questionMock.newData1(researchId))
         )         
     })
 
@@ -117,6 +117,34 @@ describe('Test update new question item', () => {
 
 })
 
+describe('Test priority value on new question item', () => {
+
+    test('should POST new question item', async () => {
+        await request(app)
+            .post(questionRoutes(QUESTION.DATA))
+            .set('Authorization', `Bearer ${token}`)
+            .send(questionMock.newData2(researchId))
+            .expect(201)
+    })
+
+    test('should READ and GET ID from new question item', async () => {
+        const response = await request(app)
+            .get(questionRoutes(QUESTION.DATA))
+            .set('Authorization', `Bearer ${token}`)
+            .query(questionMock.researchId(researchId))
+            .expect(200)
+        questionId = response.body?.result?.data[0]?.id
+        
+        expect(response.body.result.data[0]).toEqual(
+            expect.objectContaining({
+                ...questionMock.newData2(researchId),
+                priority: questionMock.priority(researchId).priority + 1
+            })
+        )         
+    })
+    
+})
+
 describe('Test delete new question item', () => {
 
     test('should DELETE new question item', async () => {
@@ -134,7 +162,7 @@ describe('Test delete new question item', () => {
             .query(questionMock.researchId(researchId))
             .expect(200)
 
-        expect(response.body.result.data).toHaveLength(0)
+        expect(response.body.result.data).toHaveLength(1)
     })     
 
 })

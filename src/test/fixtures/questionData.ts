@@ -4,7 +4,8 @@ import { type QuestionTypes } from "../../types/questions"
 type QuestionRoutes = (route: QUESTION) => string
 
 type QuestionMock = {
-    newData: (researchId: number) => QuestionTypes['fullData']
+    newData1: (researchId: number) => QuestionTypes['data']
+    newData2: (researchId: number) => QuestionTypes['data']
     changedData: (researchId: number) => QuestionTypes['fullData']
     name: (questionId: number, researchId: number) => QuestionTypes['idName']
     priority: (questionId: number) => QuestionTypes['idPriority']
@@ -18,14 +19,18 @@ export const questionRoutes: QuestionRoutes = (route) => {
 }
 
 export const questionMock: QuestionMock = {
-    newData: (researchId) => ({
-        priority: 1,
+    newData1: (researchId) => ({
         research_id: researchId,
         name: 'How to validate data on Express?',
         description: 'Lorem ipsum'
     }),
+    newData2: (researchId) => ({
+        research_id: researchId,
+        name: 'How to make routes on Express?',
+        description: 'Lorem ipsum'
+    }),
     changedData: (researchId) => ({
-        priority: 2,
+        priority: 3,
         research_id: researchId,
         name: 'How to build a docker image?',
         description: 'Get into different steps with the as operator'
@@ -37,7 +42,7 @@ export const questionMock: QuestionMock = {
     }),
     priority: (questionId) => ({
         id: questionId,
-        priority: 2
+        priority: 3
     }),
     description: (questionId) => ({
         id: questionId,
