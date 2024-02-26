@@ -79,7 +79,7 @@ The API relies on headers, sending the signed token within the response body and
 | ------ | ------ | ------ |
 | **GET ***`/question/data`***** | research_id, **token** | Get all data from question |
 | **POST ***`/question/data`***** | research_id, name, priority, description, **token** | Add new question |
-| **PATCH ***`/question/name`***** | id, name, **token** | Change question name |
+| **PATCH ***`/question/name`***** | research_id, id, name, **token** | Change question name |
 | **PATCH ***`/question/priority`***** | id, priority, **token** | Change question priority |
 | **PATCH ***`/question/description`***** | id, description, **token** | Change question description |
 | **DELETE ***`/question/data`***** | id, **token** | Remove question |
