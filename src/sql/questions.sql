@@ -7,6 +7,11 @@
     SELECT `id` FROM `research_questions`
     WHERE `research_id` = ? AND `name` = ?;
 
+-- getLastPriority
+    SELECT `priority` FROM `research_questions`
+    WHERE `research_id` = ?
+    ORDER BY `priority` DESC LIMIT 1;
+
 -- addNew    
     INSERT INTO `research_questions` (`research_id`, `name`, `priority`, `description`)
     VALUES (?, ?, ?, ?);
