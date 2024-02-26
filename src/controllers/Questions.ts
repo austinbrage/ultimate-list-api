@@ -102,6 +102,17 @@ export class Questions implements QuestionController {
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
+        const resultName = await this.questionModel.getName({ 
+            research_id: validation.data.research_id,  
+            name: validation.data.name
+        })
+
+        if(resultName.length !== 0) {
+            return res.status(401).json(createErrorResponse({
+                message: 'Existing research question name'
+            }))
+        }
+
         const result = await this.questionModel.addNew(validation.data)
 
         return res.status(201).json(createOkResponse({
