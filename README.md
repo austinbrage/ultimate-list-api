@@ -53,7 +53,7 @@ The API relies on headers, sending the signed token within the response body and
 
 | Endpoint | Queries | Description | 
 | ------ | ------ | ------ |
-| **GET ***`/concept/data`***** | **token** | Get all data from concept |
+| **GET ***`/concept/data`***** | knowledge_id, **token** | Get all data from concept |
 | **POST ***`/concept/data`***** | knowledge_id, name, type, priority, description, **token** | Add new concept |
 | **PATCH ***`/concept/name`***** | knowledge_id, id, name, **token** | Change concept name |
 | **PATCH ***`/concept/type`***** | id, type, **token** | Change concept type |
