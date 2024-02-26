@@ -56,3 +56,13 @@ CREATE TABLE `researchs` (
  	FOREIGN KEY            (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE 
 );
 
+-- 05 Research Questions Table
+CREATE TABLE `research_questions` (
+ 	`id`                   INT AUTO_INCREMENT PRIMARY KEY,
+ 	`research_id`          INT NOT NULL,
+ 	`name`                 VARCHAR(250) NOT NULL DEFAULT 'Unnamed question',
+ 	`priority`             INT NOT NULL DEFAULT 1,
+ 	`description`          VARCHAR(250) NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
+	UNIQUE KEY             `research_id_name_unique` (`research_id`,`name`),
+ 	FOREIGN KEY            (`research_id`) REFERENCES `researchs`(`id`) ON DELETE CASCADE 
+);
