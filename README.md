@@ -66,7 +66,7 @@ The API relies on headers, sending the signed token within the response body and
 | Endpoint | Queries | Description | 
 | ------ | ------ | ------ |
 | **GET ***`/research/data`***** | **token** | Get all data from research |
-| **POST ***`/research/data`***** | name, type, priority, description, **token** | Add new research |
+| **POST ***`/research/data`***** | name, type, description, **token** | Add new research |
 | **PATCH ***`/research/name`***** | id, name, **token** | Change research name |
 | **PATCH ***`/research/type`***** | id, type, **token** | Change research type |
 | **PATCH ***`/research/priority`***** | id, priority, **token** | Change research priority |
