@@ -1,5 +1,6 @@
 export interface questionsInterface {
   getAll: string
+  getName: string
   addNew: string
   changePriority: string
   changeName: string
@@ -8,6 +9,7 @@ export interface questionsInterface {
 }
 export const questionsQueries: questionsInterface = {
   "getAll": "SELECT * FROM `research_questions` WHERE `research_id` = ? ORDER BY `priority` DESC; ",
+  "getName": "SELECT `id` FROM `research_questions` WHERE `research_id` = ? AND `name` = ?; ",
   "addNew": "INSERT INTO `research_questions` (`research_id`, `name`, `priority`, `description`) VALUES (?, ?, ?, ?); ",
   "changePriority": "UPDATE `research_questions` SET `priority` = ? WHERE `id` = ?; ",
   "changeName": "UPDATE `research_questions` SET `name` = ? WHERE `id` = ?; ",
