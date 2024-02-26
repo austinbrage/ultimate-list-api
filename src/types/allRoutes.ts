@@ -7,6 +7,7 @@ export enum RESOURCES {
     USER = '/user',
     CONCEPT = '/concept',
     RESEARCH = '/research',
+    QUESTION = '/question',
     KNOWLEDGE = '/knowledge'
 }
 
@@ -42,6 +43,13 @@ export enum RESEARCH {
     DATA = '/data',
     NAME = '/name',
     TYPE = '/type',
+    PRIORITY = '/priority',
+    DESCRIPTION = '/description'
+}
+
+export enum QUESTION {
+    DATA = '/data',
+    NAME = '/name',
     PRIORITY = '/priority',
     DESCRIPTION = '/description'
 }

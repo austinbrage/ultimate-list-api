@@ -1,5 +1,6 @@
 import express, { json, Router } from 'express'
 import createUserRouter from './routes/users'
+import createQuestionRouter from './routes/questions'
 import createConceptRouter from './routes/concepts'
 import createResearchRouter from './routes/researchs'
 import createKnowledgeRouter from './routes/knowledge'
@@ -10,6 +11,7 @@ import { notFoundHandler } from './services/notFoundHandler'
 import { APP, RESOURCES } from './types/allRoutes'
 import { type IKnowledge } from './types/knowledge' 
 import { type IResearch } from './types/researchs' 
+import { type IQuestion } from './types/questions'
 import { type IConcept } from './types/concepts'
 import { type IUser } from './types/users'
 import { type Pool } from 'mysql2/promise'
@@ -17,12 +19,20 @@ import { type Pool } from 'mysql2/promise'
 type ModelsType = {
     knowledgeModel: IKnowledge
     researchModel: IResearch
+    questionModel: IQuestion
     conceptModel: IConcept
     userModel: IUser
     pingPool: Pool
 }
 
-const createApp = ({ userModel, knowledgeModel, researchModel, conceptModel, pingPool }: ModelsType) => {
+const createApp = ({ 
+    userModel, 
+    knowledgeModel, 
+    researchModel, 
+    questionModel, 
+    conceptModel, 
+    pingPool 
+}: ModelsType) => {
     const app = express()
     const mainRouter = Router()
 
@@ -32,9 +42,10 @@ const createApp = ({ userModel, knowledgeModel, researchModel, conceptModel, pin
     
     mainRouter.use(RESOURCES.PING,          createHealthcareRouter({ pingPool }))
     mainRouter.use(RESOURCES.USER,          createUserRouter({ userModel }))
+    mainRouter.use(RESOURCES.KNOWLEDGE,     createKnowledgeRouter({ knowledgeModel }))
     mainRouter.use(RESOURCES.CONCEPT,       createConceptRouter({ conceptModel }))
     mainRouter.use(RESOURCES.RESEARCH,      createResearchRouter({ researchModel }))
-    mainRouter.use(RESOURCES.KNOWLEDGE,     createKnowledgeRouter({ knowledgeModel }))
+    mainRouter.use(RESOURCES.QUESTION,      createQuestionRouter({ questionModel }))
     
     app.use(APP.VERSION_1, mainRouter)
 
