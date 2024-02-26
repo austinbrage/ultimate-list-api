@@ -33,6 +33,18 @@ class Research implements IResearch {
         return rows as RowDataPacket[]
     }
 
+    getPriority = async ({ user_id }: ResearchTypes['userId']) => {
+        const connection = await this.pool.getConnection()
+
+        const [rows] = await connection.execute(
+            researchsQueries.getLastPriority,
+            [user_id]
+        )
+
+        connection.release()
+        return rows as RowDataPacket[]
+    }
+
     changePriority = async ({ id, priority }: ResearchTypes['idPriority']) => {
         const connection = await this.pool.getConnection()
 

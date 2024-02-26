@@ -35,6 +35,7 @@ const idPriority = researchTableSchema.pick({ id: true, priority: true })
 const userIdName = researchTableSchema.pick({ user_id: true, name: true })
 const idDescription = researchTableSchema.pick({ id: true, description: true })
 const fullData = researchTableSchema.omit({ id: true })
+const data = researchTableSchema.omit({ id: true, priority: true})
 
 export const researchSchema = {
     id,
@@ -44,5 +45,6 @@ export const researchSchema = {
     idPriority,
     userIdName,
     idDescription,
-    fullData
+    fullData,
+    data
 }

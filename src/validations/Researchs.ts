@@ -4,6 +4,7 @@ import { type SafeParseReturnType } from 'zod'
 
 export interface IResearchValidation {
     id(data: unknown): SafeParseReturnType<unknown, ResearchTypes['id']> 
+    data(data: unknown): SafeParseReturnType<unknown, ResearchTypes['data']> 
     userId(data: unknown): SafeParseReturnType<unknown, ResearchTypes['userId']> 
     idType(data: unknown): SafeParseReturnType<unknown, ResearchTypes['idType']> 
     idName(data: unknown): SafeParseReturnType<unknown, ResearchTypes['idName']> 
@@ -20,6 +21,7 @@ export class ResearchValidation implements IResearchValidation {
     }
 
     id = (data: unknown) => this.researchSchema.id.safeParse(data)
+    data = (data: unknown) => this.researchSchema.data.safeParse(data)
     userId = (data: unknown) => this.researchSchema.userId.safeParse(data)
     idType = (data: unknown) => this.researchSchema.idType.safeParse(data)
     idName = (data: unknown) => this.researchSchema.idName.safeParse(data)

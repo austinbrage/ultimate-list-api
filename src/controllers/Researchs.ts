@@ -104,8 +104,8 @@ export class Researchs implements ResearchController {
     })
 
     addNew = asyncErrorHandler(async (req: Request, res: Response) => {
-        // const { user_id, type, name, priority, description } = req.body
-        const validation = this.validateResearch.fullData({ user_id: req?.userId.id, ...req.body})
+        // const { user_id, type, name, description } = req.body
+        const validation = this.validateResearch.data({ user_id: req?.userId.id, ...req.body})
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
@@ -120,7 +120,13 @@ export class Researchs implements ResearchController {
             }))
         }
 
-        await this.researchModel.addNew(validation.data)
+        const resultPriority = await this.researchModel.getPriority({
+            user_id: validation.data.user_id
+        })
+
+        const newPriority = resultPriority[0]?.priority + 1 ?? 1
+
+        await this.researchModel.addNew({...validation.data, priority: newPriority})
 
         return res.status(201).json(createOkResponse({
             message: 'New research created successfully'
