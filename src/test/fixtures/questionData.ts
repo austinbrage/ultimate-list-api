@@ -6,10 +6,10 @@ type QuestionRoutes = (route: QUESTION) => string
 type QuestionMock = {
     newData: (researchId: number) => QuestionTypes['fullData']
     changedData: (researchId: number) => QuestionTypes['fullData']
-    name: (doubtId: number) => QuestionTypes['idName']
-    priority: (doubtId: number) => QuestionTypes['idPriority']
-    description: (doubtId: number) => QuestionTypes['idDescription']
-    id: (doubtId: number) => QuestionTypes['id']
+    name: (questionId: number) => QuestionTypes['idName']
+    priority: (questionId: number) => QuestionTypes['idPriority']
+    description: (questionId: number) => QuestionTypes['idDescription']
+    id: (questionId: number) => QuestionTypes['id']
     researchId: (researchId: number) => QuestionTypes['researchIdQuery']
 }
 
@@ -30,22 +30,22 @@ export const questionMock: QuestionMock = {
         name: 'How to build a docker image?',
         description: 'Get into different steps with the as operator'
     }),
-    name: (doubtId: number) => ({
-        id: doubtId,
+    name: (questionId) => ({
+        id: questionId,
         name: 'How to build a docker image?'
     }),
-    priority: (doubtId: number) => ({
-        id: doubtId,
+    priority: (questionId) => ({
+        id: questionId,
         priority: 2
     }),
-    description: (doubtId: number) => ({
-        id: doubtId,
+    description: (questionId) => ({
+        id: questionId,
         description: 'Get into different steps with the as operator'
     }),
-    id: (doubtId: number) => ({
-        id: doubtId
+    id: (questionId) => ({
+        id: questionId
     }),
-    researchId: (researchId: number) => ({
+    researchId: (researchId) => ({
         research_id: researchId.toString()
     })
 }
