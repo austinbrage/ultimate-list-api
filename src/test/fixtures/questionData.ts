@@ -6,7 +6,7 @@ type QuestionRoutes = (route: QUESTION) => string
 type QuestionMock = {
     newData: (researchId: number) => QuestionTypes['fullData']
     changedData: (researchId: number) => QuestionTypes['fullData']
-    name: (questionId: number) => QuestionTypes['idName']
+    name: (questionId: number, researchId: number) => QuestionTypes['idName']
     priority: (questionId: number) => QuestionTypes['idPriority']
     description: (questionId: number) => QuestionTypes['idDescription']
     id: (questionId: number) => QuestionTypes['id']
@@ -30,7 +30,8 @@ export const questionMock: QuestionMock = {
         name: 'How to build a docker image?',
         description: 'Get into different steps with the as operator'
     }),
-    name: (questionId) => ({
+    name: (questionId, researchId) => ({
+        research_id: researchId,
         id: questionId,
         name: 'How to build a docker image?'
     }),

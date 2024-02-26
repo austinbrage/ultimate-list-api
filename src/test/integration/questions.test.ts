@@ -83,7 +83,7 @@ describe('Test update new question item', () => {
         await request(app)
             .patch(questionRoutes(QUESTION.NAME))
             .set('Authorization', `Bearer ${token}`)
-            .send(questionMock.name(questionId))
+            .send(questionMock.name(questionId, researchId))
             .expect(200)
     })
 
