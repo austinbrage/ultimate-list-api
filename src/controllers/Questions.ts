@@ -74,11 +74,10 @@ export class Questions implements QuestionController {
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
-        const result = await this.questionModel.changePriority(validation.data)
+        await this.questionModel.changePriority(validation.data)
 
         return res.status(200).json(createOkResponse({
-            message: 'Research question priority changed successfully',
-            data: result
+            message: 'Research question priority changed successfully'
         }))
     })    
 
@@ -88,11 +87,10 @@ export class Questions implements QuestionController {
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
-        const result = await this.questionModel.changeDescription(validation.data)
+         await this.questionModel.changeDescription(validation.data)
 
         return res.status(200).json(createOkResponse({
-            message: 'Research question description changed successfully',
-            data: result
+            message: 'Research question description changed successfully'
         }))
     })    
 
@@ -113,11 +111,10 @@ export class Questions implements QuestionController {
             }))
         }
 
-        const result = await this.questionModel.addNew(validation.data)
+        await this.questionModel.addNew(validation.data)
 
         return res.status(201).json(createOkResponse({
-            message: 'New research question created successfully',
-            data: result
+            message: 'New research question created successfully'
         }))
     })    
 
@@ -127,11 +124,10 @@ export class Questions implements QuestionController {
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
-        const result = await this.questionModel.remove(validation.data)
+        await this.questionModel.remove(validation.data)
 
         return res.status(200).json(createOkResponse({
-            message: 'Research question removed successfully',
-            data: result
+            message: 'Research question removed successfully'
         }))
     })    
 }
