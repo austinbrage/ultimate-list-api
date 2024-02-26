@@ -34,7 +34,7 @@ describe('Test create and read new research card', () => {
         await request(app)
             .post(researchRoutes(RESEARCH.DATA))
             .set('Authorization', `Bearer ${token}`)
-            .send(researchMock.newData)
+            .send(researchMock.newData1)
             .expect(201)
     })
 
@@ -46,7 +46,7 @@ describe('Test create and read new research card', () => {
         researchId = response.body?.result?.data[0]?.id
 
         expect(response.body.result.data[0]).toEqual(
-            expect.objectContaining(researchMock.newData)
+            expect.objectContaining(researchMock.newData1)
         )         
     })
 

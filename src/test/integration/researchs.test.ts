@@ -33,7 +33,7 @@ describe('Test create and read new research card', () => {
         await request(app)
             .post(researchRoutes(RESEARCH.DATA))
             .set('Authorization', `Bearer ${token}`)
-            .send(researchMock.newData)
+            .send(researchMock.newData1)
             .expect(201)
     })
 
@@ -45,7 +45,7 @@ describe('Test create and read new research card', () => {
         researchId = response.body?.result?.data[0]?.id
 
         expect(response.body.result.data[0]).toEqual(
-            expect.objectContaining(researchMock.newData)
+            expect.objectContaining(researchMock.newData1)
         )         
     })
 
@@ -98,6 +98,33 @@ describe('Test update new research card', () => {
 
 })
 
+describe('Test priority value on new research card', () => {
+
+    test('should POST new research card', async () => {
+        await request(app)
+            .post(researchRoutes(RESEARCH.DATA))
+            .set('Authorization', `Bearer ${token}`)
+            .send(researchMock.newData2)
+            .expect(201)
+    })
+
+    test('should READ and GET ID from new research card', async () => {
+        const response = await request(app)
+            .get(researchRoutes(RESEARCH.DATA))
+            .set('Authorization', `Bearer ${token}`)
+            .expect(200)
+        researchId = response.body?.result?.data[0]?.id
+        
+        expect(response.body.result.data[0]).toEqual(
+            expect.objectContaining({
+                ...researchMock.newData2,
+                priority: researchMock.priority(researchId).priority + 1
+            })
+        )         
+    })
+    
+})
+
 describe('Test delete new research card', () => {
 
     test('should DELETE new research card', async () => {
@@ -114,7 +141,7 @@ describe('Test delete new research card', () => {
             .set('Authorization', `Bearer ${token}`)
             .expect(200)
 
-        expect(response.body.result.data).toHaveLength(0)
+        expect(response.body.result.data).toHaveLength(1)
     })     
 
 })
