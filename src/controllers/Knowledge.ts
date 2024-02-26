@@ -109,6 +109,17 @@ export class Knowledge implements KnowledgeController {
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
+        const result = await this.knowledgeModel.getName({ 
+            user_id: req?.userId.id,  
+            name: validation.data.name
+        })
+
+        if(result.length !== 0) {
+            return res.status(401).json(createErrorResponse({
+                message: 'Existing knowledge name'
+            }))
+        }
+
         await this.knowledgeModel.addNew(validation.data)
 
         return res.status(201).json(createOkResponse({

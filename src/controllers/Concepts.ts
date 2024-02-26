@@ -113,6 +113,17 @@ export class Concepts implements ConceptController {
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
+        const result = await this.conceptModel.getName({ 
+            knowledge_id: validation.data.knowledge_id,  
+            name: validation.data.name
+        })
+
+        if(result.length !== 0) {
+            return res.status(401).json(createErrorResponse({
+                message: 'Existing knowledge-concept name'
+            }))
+        }
+
         await this.conceptModel.addNew(validation.data)
 
         return res.status(201).json(createOkResponse({

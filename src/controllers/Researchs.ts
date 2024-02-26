@@ -109,6 +109,17 @@ export class Researchs implements ResearchController {
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
+        const result = await this.researchModel.getName({ 
+            user_id: req?.userId.id,  
+            name: validation.data.name
+        })
+
+        if(result.length !== 0) {
+            return res.status(401).json(createErrorResponse({
+                message: 'Existing research name'
+            }))
+        }
+
         await this.researchModel.addNew(validation.data)
 
         return res.status(201).json(createOkResponse({
