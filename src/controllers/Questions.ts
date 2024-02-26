@@ -115,9 +115,9 @@ export class Questions implements QuestionController {
             research_id: validation.data.research_id
         })
 
-        const lastPriority = resultPriority[0]?.priority + 1 ?? 1
+        const newPriority = resultPriority[0]?.priority + 1 ?? 1
 
-        await this.questionModel.addNew({...validation.data, priority: lastPriority})
+        await this.questionModel.addNew({...validation.data, priority: newPriority})
 
         return res.status(201).json(createOkResponse({
             message: 'New research question created successfully'
