@@ -4,6 +4,8 @@ CREATE DATABASE `ultimate_list_test`;
 
 USE `ultimate_list_test`;
 
+-- Study Mode Tables
+
 -- 01 Users Table
 CREATE TABLE `users` (
     `id`            INT          AUTO_INCREMENT PRIMARY KEY,
@@ -65,4 +67,16 @@ CREATE TABLE `research_questions` (
  	`description`          VARCHAR(250) NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
 	UNIQUE KEY             `research_id_name_unique` (`research_id`,`name`),
  	FOREIGN KEY            (`research_id`) REFERENCES `researchs`(`id`) ON DELETE CASCADE 
+);
+
+-- 06 Research Question Answers Table
+CREATE TABLE `research_question_answers` (
+ 	`id`                   INT AUTO_INCREMENT PRIMARY KEY,
+ 	`question_id`          INT NOT NULL,
+ 	`priority`             INT NOT NULL DEFAULT 1,	
+ 	`type`                 VARCHAR(250) NOT NULL DEFAULT 'Core answer',
+ 	`name`                 VARCHAR(250) NOT NULL DEFAULT 'Unnamed answer',
+ 	`description`          TEXT NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 
+ 	UNIQUE KEY             `question_id_name_unique` (`question_id`,`name`),
+ 	FOREIGN KEY            (`question_id`) REFERENCES `research_questions`(`id`) ON DELETE CASCADE 
 );
