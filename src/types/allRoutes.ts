@@ -5,6 +5,7 @@ export enum APP {
 export enum RESOURCES {
     PING = '/ping',
     USER = '/user',
+    ANSWER = '/answer',
     CONCEPT = '/concept',
     RESEARCH = '/research',
     QUESTION = '/question',
@@ -50,6 +51,14 @@ export enum RESEARCH {
 export enum QUESTION {
     DATA = '/data',
     NAME = '/name',
+    PRIORITY = '/priority',
+    DESCRIPTION = '/description'
+}
+
+export enum ANSWER {
+    DATA = '/data',
+    NAME = '/name',
+    TYPE = '/type',
     PRIORITY = '/priority',
     DESCRIPTION = '/description'
 }

@@ -1,8 +1,9 @@
 import createApp from './app'
 import UserModel from './models/User'
+import AnwswerModel from './models/Answer'
+import ConceptModel from './models/Concept'
 import QuestionModel from './models/Question'
 import KnowledgeModel from './models/Knowledge'
-import ConceptModel from './models/Concept'
 import ReasearchModel from './models/Research'
 import { PORT, ENVIRONMENT } from './utils/config'
 import { createPoolConnection } from './services/database'
@@ -22,10 +23,12 @@ const researchModel = new ReasearchModel({ researchPool })
 const knowledgeModel = new KnowledgeModel({ knowledgePool })
 const conceptModel = new ConceptModel({ conceptPool: knowledgePool })
 const questionModel = new QuestionModel({ questionPool: researchPool })
+const answerModel = new AnwswerModel({ answerPool: researchPool })
 
 const app = createApp({ 
     pingPool, 
     userModel, 
+    answerModel,
     questionModel,
     knowledgeModel, 
     researchModel, 

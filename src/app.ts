@@ -1,5 +1,6 @@
 import express, { json, Router } from 'express'
 import createUserRouter from './routes/users'
+import createAnswerRouter from './routes/answers'
 import createQuestionRouter from './routes/questions'
 import createConceptRouter from './routes/concepts'
 import createResearchRouter from './routes/researchs'
@@ -13,6 +14,7 @@ import { type IKnowledge } from './types/knowledge'
 import { type IResearch } from './types/researchs' 
 import { type IQuestion } from './types/questions'
 import { type IConcept } from './types/concepts'
+import { type IAnswer } from './types/answers'
 import { type IUser } from './types/users'
 import { type Pool } from 'mysql2/promise'
 
@@ -21,6 +23,7 @@ type ModelsType = {
     researchModel: IResearch
     questionModel: IQuestion
     conceptModel: IConcept
+    answerModel: IAnswer
     userModel: IUser
     pingPool: Pool
 }
@@ -31,6 +34,7 @@ const createApp = ({
     researchModel, 
     questionModel, 
     conceptModel, 
+    answerModel,
     pingPool 
 }: ModelsType) => {
     const app = express()
@@ -46,6 +50,7 @@ const createApp = ({
     mainRouter.use(RESOURCES.CONCEPT,       createConceptRouter({ conceptModel }))
     mainRouter.use(RESOURCES.RESEARCH,      createResearchRouter({ researchModel }))
     mainRouter.use(RESOURCES.QUESTION,      createQuestionRouter({ questionModel }))
+    mainRouter.use(RESOURCES.ANSWER,        createAnswerRouter({ answerModel }))
     
     app.use(APP.VERSION_1, mainRouter)
 
