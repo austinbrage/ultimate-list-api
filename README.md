@@ -42,7 +42,7 @@ The API relies on headers, sending the signed token within the response body and
 | Endpoint | Queries | Description | 
 | ------ | ------ | ------ |
 | **GET ***`/knowledge/data`***** | **token** | Get all data from knowledge |
-| **POST ***`/knowledge/data`***** | name, type, priority, description, **token** | Add new knowledge |
+| **POST ***`/knowledge/data`***** | name, type, description, **token** | Add new knowledge |
 | **PATCH ***`/knowledge/name`***** | id, name, **token** | Change knowledge name |
 | **PATCH ***`/knowledge/type`***** | id, type, **token** | Change knowledge type |
 | **PATCH ***`/knowledge/priority`***** | id, priority, **token** | Change knowledge priority |
