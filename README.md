@@ -83,3 +83,15 @@ The API relies on headers, sending the signed token within the response body and
 | **PATCH ***`/question/priority`***** | id, priority, **token** | Change question priority |
 | **PATCH ***`/question/description`***** | id, description, **token** | Change question description |
 | **DELETE ***`/question/data`***** | id, **token** | Remove question |
+
+## Research Question Answers Routes
+
+| Endpoint | Queries | Description | 
+| ------ | ------ | ------ |
+| **GET ***`/answer/data`***** | question_id, **token** | Get all data from answer |
+| **POST ***`/answer/data`***** | question_id, name, type, description, **token** | Add new answer |
+| **PATCH ***`/answer/name`***** | question_id, id, name, **token** | Change answer name |
+| **PATCH ***`/answer/type`***** | id, type, **token** | Change answer type |
+| **PATCH ***`/answer/priority`***** | id, priority, **token** | Change answer priority |
+| **PATCH ***`/answer/description`***** | id, description, **token** | Change answer description |
+| **DELETE ***`/answer/data`***** | id, **token** | Remove answer |
