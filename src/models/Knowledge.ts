@@ -33,6 +33,18 @@ class Knowledge implements IKnowledge {
         return rows as RowDataPacket[]
     }
 
+    getPriority = async ({ user_id }: KnowledgeTypes['userId']) => {
+        const connection = await this.pool.getConnection()
+
+        const [rows] = await connection.execute(
+            knowledgeQueries.getLastPriority,
+            [user_id]
+        )
+
+        connection.release()
+        return rows as RowDataPacket[]
+    }
+
     changePriority = async ({ id, priority }: KnowledgeTypes['idPriority']) => {
         const connection = await this.pool.getConnection()
 

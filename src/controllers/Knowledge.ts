@@ -104,8 +104,8 @@ export class Knowledge implements KnowledgeController {
     })
 
     addNew = asyncErrorHandler(async (req: Request, res: Response) => {
-        // const { user_id, type, name, priority, description } = req.body
-        const validation = this.validateKnowledge.fullData({ user_id: req?.userId.id, ...req.body})
+        // const { user_id, type, name, description } = req.body
+        const validation = this.validateKnowledge.data({ user_id: req?.userId.id, ...req.body})
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
@@ -120,7 +120,13 @@ export class Knowledge implements KnowledgeController {
             }))
         }
 
-        await this.knowledgeModel.addNew(validation.data)
+        const resultPriority = await this.knowledgeModel.getPriority({
+            user_id: req?.userId.id
+        })
+
+        const newPriority = resultPriority[0]?.priority + 1 ?? 1
+        
+        await this.knowledgeModel.addNew({...validation.data, priority: newPriority})
 
         return res.status(201).json(createOkResponse({
             message: 'New knowledge created successfully'

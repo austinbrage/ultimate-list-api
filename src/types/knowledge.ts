@@ -12,11 +12,13 @@ export type KnowledgeTypes = {
     userIdName: z.infer<typeof knowledgeSchema.userIdName>
     idDescription: z.infer<typeof knowledgeSchema.idDescription>
     fullData: z.infer<typeof knowledgeSchema.fullData>
+    data: z.infer<typeof knowledgeSchema.data>
 }
 
 export interface IKnowledge {
     getAll({ user_id }: KnowledgeTypes['userId']): Promise<RowDataPacket[]>
     getName({ user_id, name }: KnowledgeTypes['userIdName']): Promise<RowDataPacket[]>
+    getPriority({ user_id }: KnowledgeTypes['userId']): Promise<RowDataPacket[]>
     changePriority({ id, priority }: KnowledgeTypes['idPriority']): Promise<RowDataPacket[]>
     changeType({ id, type }: KnowledgeTypes['idType']): Promise<RowDataPacket[]>
     changeName({ id, name }: KnowledgeTypes['idName']): Promise<RowDataPacket[]>

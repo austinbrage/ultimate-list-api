@@ -35,6 +35,7 @@ const idPriority = knowledgeTableSchema.pick({ id: true, priority: true })
 const userIdName = knowledgeTableSchema.pick({ user_id: true, name: true })
 const idDescription = knowledgeTableSchema.pick({ id: true, description: true })
 const fullData = knowledgeTableSchema.omit({ id: true })
+const data = knowledgeTableSchema.omit({ id: true, priority: true })
 
 export const knowledgeSchema = {
     id,
@@ -44,5 +45,6 @@ export const knowledgeSchema = {
     idPriority,
     userIdName,
     idDescription,
-    fullData
+    fullData,
+    data
 }
