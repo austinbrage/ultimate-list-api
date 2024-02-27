@@ -1,5 +1,5 @@
+import type { RowDataPacket, ResultSetHeader, Pool } from "mysql2/promise" 
 import type { ConceptTypes, IConcept } from "../types/concepts"
-import type { RowDataPacket, Pool } from "mysql2/promise" 
 import { conceptsQueries } from "../queries/concepts"
 
 class Concept implements IConcept {
@@ -54,7 +54,7 @@ class Concept implements IConcept {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeType = async ({ id, type }: ConceptTypes['idType']) => {
@@ -66,7 +66,7 @@ class Concept implements IConcept {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeName = async ({ id, name }: ConceptTypes['idName']) => {
@@ -78,7 +78,7 @@ class Concept implements IConcept {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeDescription = async ({ id, description }: ConceptTypes['idDescription']) => {
@@ -90,7 +90,7 @@ class Concept implements IConcept {
         )
 
         connection.release()
-        return rows as RowDataPacket[]      
+        return rows as ResultSetHeader      
     }
 
     addNew = async ({ knowledge_id, type, name, priority, description }: ConceptTypes['fullData']) => {
@@ -102,7 +102,7 @@ class Concept implements IConcept {
         )
 
         connection.release()
-        return rows as RowDataPacket[]    
+        return rows as ResultSetHeader    
     }
 
     remove = async ({ id }: ConceptTypes['id']) => {
@@ -114,7 +114,7 @@ class Concept implements IConcept {
         )
 
         connection.release()
-        return rows as RowDataPacket[]   
+        return rows as ResultSetHeader   
     }
 }
 

@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { userSchema, authSchema } from '../schemas/users'
-import { type RowDataPacket } from 'mysql2'
-import { AsyncFunction } from '../services/errorHandler'
+import { type RowDataPacket, type ResultSetHeader } from 'mysql2'
+import { type AsyncFunction } from '../services/errorHandler'
 
 export type UserType = {
     id: z.infer<typeof userSchema.id>
@@ -30,13 +30,13 @@ export interface IUser {
     getByEmail({ email }: UserType['email']): Promise<RowDataPacket[]>
     getIdPassword({ name }: UserType['name']): Promise<RowDataPacket[]>
     getByExternalID({ auth_provider, external_id }: UserType['authData']): Promise<RowDataPacket[]>
-    changeName({ id, name }: UserType['idName']): Promise<RowDataPacket[]>
-    changeEmail({ id, email }: UserType['idEmail']): Promise<RowDataPacket[]>
-    changeNickname({ id, nickname }: UserType['idNickname']): Promise<RowDataPacket[]>
-    changePassword({ id, password }: UserType['idPassword']): Promise<RowDataPacket[]>
-    changeExternalID({ auth_provider, external_id, email }: UserType['authEmail']): Promise<RowDataPacket[]>
+    changeName({ id, name }: UserType['idName']): Promise<ResultSetHeader>
+    changeEmail({ id, email }: UserType['idEmail']): Promise<ResultSetHeader>
+    changeNickname({ id, nickname }: UserType['idNickname']): Promise<ResultSetHeader>
+    changePassword({ id, password }: UserType['idPassword']): Promise<ResultSetHeader>
+    changeExternalID({ auth_provider, external_id, email }: UserType['authEmail']): Promise<ResultSetHeader>
     addNew({ name, password, email, nickname, auth_provider, external_id }: UserType['fullData']): Promise<number>
-    remove({ id }: UserType['id']): Promise<RowDataPacket[]>
+    remove({ id }: UserType['id']): Promise<ResultSetHeader>
 }
 
 

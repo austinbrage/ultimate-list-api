@@ -114,7 +114,7 @@ class User implements IUser {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
     
     changeName = async ({ id, name }: UserType['idName']) => {
@@ -126,7 +126,7 @@ class User implements IUser {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeEmail = async ({ id, email }: UserType['idEmail']) => {
@@ -138,7 +138,7 @@ class User implements IUser {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeNickname = async ({ id, nickname }: UserType['idNickname']) => {
@@ -150,7 +150,7 @@ class User implements IUser {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changePassword = async ({ id, password }: UserType['idPassword']) => {
@@ -162,7 +162,7 @@ class User implements IUser {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     remove = async ({ id }: UserType['id']) => {
@@ -174,7 +174,7 @@ class User implements IUser {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     addNew = async ({ name, password, email, nickname, auth_provider, external_id }: UserType['fullData']) => {

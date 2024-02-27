@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { questionSchema, questionQuerySchema } from "../schemas/questions"
-import { type RowDataPacket } from 'mysql2'
+import { type RowDataPacket, type ResultSetHeader } from 'mysql2'
 import { type AsyncFunction } from '../services/errorHandler'
 
 export type QuestionTypes = {
@@ -19,11 +19,11 @@ export interface IQuestion {
     getAll({ research_id }: QuestionTypes['researchId']): Promise<RowDataPacket[]>
     getName({ research_id, name }: QuestionTypes['researchIdName']): Promise<RowDataPacket[]>
     getPriority({ research_id }: QuestionTypes['researchId']): Promise<RowDataPacket[]>
-    changeName({ research_id, id, name }: QuestionTypes['idName']): Promise<RowDataPacket[]>
-    changePriority({ id, priority }: QuestionTypes['idPriority']): Promise<RowDataPacket[]>
-    changeDescription({ id, description }: QuestionTypes['idDescription']): Promise<RowDataPacket[]>
-    addNew({ research_id, name, priority, description }: QuestionTypes['fullData']): Promise<RowDataPacket[]>
-    remove({ id }: QuestionTypes['id']): Promise<RowDataPacket[]>
+    changeName({ research_id, id, name }: QuestionTypes['idName']): Promise<ResultSetHeader>
+    changePriority({ id, priority }: QuestionTypes['idPriority']): Promise<ResultSetHeader>
+    changeDescription({ id, description }: QuestionTypes['idDescription']): Promise<ResultSetHeader>
+    addNew({ research_id, name, priority, description }: QuestionTypes['fullData']): Promise<ResultSetHeader>
+    remove({ id }: QuestionTypes['id']): Promise<ResultSetHeader>
 }
 
 export interface QuestionController {

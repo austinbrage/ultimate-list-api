@@ -1,5 +1,5 @@
 import type { QuestionTypes, IQuestion } from "../types/questions"
-import type { RowDataPacket, Pool } from "mysql2/promise" 
+import type { RowDataPacket, ResultSetHeader, Pool } from "mysql2/promise" 
 import { questionsQueries } from "../queries/questions"
 
 class Question implements IQuestion {
@@ -54,7 +54,7 @@ class Question implements IQuestion {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changePriority = async ({ id, priority }: QuestionTypes['idPriority']) => {
@@ -66,7 +66,7 @@ class Question implements IQuestion {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeDescription = async ({ id, description }: QuestionTypes['idDescription']) => {
@@ -78,7 +78,7 @@ class Question implements IQuestion {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     addNew = async ({ research_id, name, priority, description }: QuestionTypes['fullData']) => {
@@ -90,7 +90,7 @@ class Question implements IQuestion {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     remove = async ({ id }: QuestionTypes['id']) => {
@@ -102,7 +102,7 @@ class Question implements IQuestion {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 }
 

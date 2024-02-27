@@ -1,5 +1,5 @@
+import type { RowDataPacket, ResultSetHeader, Pool } from "mysql2/promise" 
 import type { KnowledgeTypes, IKnowledge } from "../types/knowledge"
-import type { RowDataPacket, Pool } from "mysql2/promise" 
 import { knowledgeQueries } from "../queries/knowledge"
 
 class Knowledge implements IKnowledge {
@@ -54,7 +54,7 @@ class Knowledge implements IKnowledge {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeType = async ({ id, type }: KnowledgeTypes['idType']) => {
@@ -66,7 +66,7 @@ class Knowledge implements IKnowledge {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeName = async ({ id, name }: KnowledgeTypes['idName']) => {
@@ -78,7 +78,7 @@ class Knowledge implements IKnowledge {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeDescription = async ({ id, description }: KnowledgeTypes['idDescription']) => {
@@ -90,7 +90,7 @@ class Knowledge implements IKnowledge {
         )
 
         connection.release()
-        return rows as RowDataPacket[]      
+        return rows as ResultSetHeader      
     }
 
     addNew = async ({ user_id, type, name, priority, description }: KnowledgeTypes['fullData']) => {
@@ -102,7 +102,7 @@ class Knowledge implements IKnowledge {
         )
 
         connection.release()
-        return rows as RowDataPacket[]    
+        return rows as ResultSetHeader    
     }
 
     remove = async ({ id }: KnowledgeTypes['id']) => {
@@ -114,7 +114,7 @@ class Knowledge implements IKnowledge {
         )
 
         connection.release()
-        return rows as RowDataPacket[]   
+        return rows as ResultSetHeader   
     }
 }
 

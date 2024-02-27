@@ -1,5 +1,5 @@
+import type { RowDataPacket, ResultSetHeader, Pool } from "mysql2/promise" 
 import type { ResearchTypes, IResearch } from "../types/researchs"
-import type { RowDataPacket, Pool } from "mysql2/promise" 
 import { researchsQueries } from "../queries/researchs"
 
 class Research implements IResearch {
@@ -54,7 +54,7 @@ class Research implements IResearch {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeType = async ({ id, type }: ResearchTypes['idType']) => {
@@ -66,7 +66,7 @@ class Research implements IResearch {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeName = async ({ id, name }: ResearchTypes['idName']) => {
@@ -78,7 +78,7 @@ class Research implements IResearch {
         )
 
         connection.release()
-        return rows as RowDataPacket[]
+        return rows as ResultSetHeader
     }
 
     changeDescription = async ({ id, description }: ResearchTypes['idDescription']) => {
@@ -90,7 +90,7 @@ class Research implements IResearch {
         )
 
         connection.release()
-        return rows as RowDataPacket[]      
+        return rows as ResultSetHeader      
     }
 
     addNew = async ({ user_id, type, name, priority, description }: ResearchTypes['fullData']) => {
@@ -102,7 +102,7 @@ class Research implements IResearch {
         )
 
         connection.release()
-        return rows as RowDataPacket[]    
+        return rows as ResultSetHeader    
     }
 
     remove = async ({ id }: ResearchTypes['id']) => {
@@ -114,7 +114,7 @@ class Research implements IResearch {
         )
 
         connection.release()
-        return rows as RowDataPacket[]   
+        return rows as ResultSetHeader   
     }
 }
 
