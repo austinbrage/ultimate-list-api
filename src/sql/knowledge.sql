@@ -7,6 +7,11 @@
     SELECT `id` FROM `knowledge`
     WHERE `user_id` = ? AND `name` = ?;
 
+-- getLastPriority
+    SELECT `priority` FROM `knowledge`
+    WHERE `user_id` = ?
+    ORDER BY `priority` DESC LIMIT 1;
+
 -- addNew    
     INSERT INTO `knowledge` (`user_id`, `type`, `name`, `priority`, `description`)
     VALUES (?, ?, ?, ?, ?);

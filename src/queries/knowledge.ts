@@ -1,6 +1,7 @@
 export interface knowledgeInterface {
   getAll: string
   getName: string
+  getLastPriority: string
   addNew: string
   changePriority: string
   changeType: string
@@ -11,6 +12,7 @@ export interface knowledgeInterface {
 export const knowledgeQueries: knowledgeInterface = {
   "getAll": "SELECT * FROM `knowledge` WHERE `user_id` = ? ORDER BY `priority` DESC; ",
   "getName": "SELECT `id` FROM `knowledge` WHERE `user_id` = ? AND `name` = ?; ",
+  "getLastPriority": "SELECT `priority` FROM `knowledge` WHERE `user_id` = ? ORDER BY `priority` DESC LIMIT 1; ",
   "addNew": "INSERT INTO `knowledge` (`user_id`, `type`, `name`, `priority`, `description`) VALUES (?, ?, ?, ?, ?); ",
   "changePriority": "UPDATE `knowledge` SET `priority` = ? WHERE `id` = ?; ",
   "changeType": "UPDATE `knowledge` SET `type` = ? WHERE `id` = ?; ",
