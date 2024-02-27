@@ -54,7 +54,7 @@ The API relies on headers, sending the signed token within the response body and
 | Endpoint | Queries | Description | 
 | ------ | ------ | ------ |
 | **GET ***`/concept/data`***** | knowledge_id, **token** | Get all data from concept |
-| **POST ***`/concept/data`***** | knowledge_id, name, type, priority, description, **token** | Add new concept |
+| **POST ***`/concept/data`***** | knowledge_id, name, type, description, **token** | Add new concept |
 | **PATCH ***`/concept/name`***** | knowledge_id, id, name, **token** | Change concept name |
 | **PATCH ***`/concept/type`***** | id, type, **token** | Change concept type |
 | **PATCH ***`/concept/priority`***** | id, priority, **token** | Change concept priority |
@@ -73,7 +73,7 @@ The API relies on headers, sending the signed token within the response body and
 | **PATCH ***`/research/description`***** | id, description, **token** | Change research description |
 | **DELETE ***`/research/data`***** | id, **token** | Remove research |
 
-## Ressearch Questions Routes
+## Research Questions Routes
 
 | Endpoint | Queries | Description | 
 | ------ | ------ | ------ |
