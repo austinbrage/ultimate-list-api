@@ -34,7 +34,7 @@ describe('Setup: Post new knowledge card and get the id', () => {
         await request(app)
             .post(knowledgeRoutes(KNOWLEDGE.DATA))
             .set('Authorization', `Bearer ${token}`)
-            .send(knowledgeMock.newData)
+            .send(knowledgeMock.newData1)
             .expect(201)
     })
 

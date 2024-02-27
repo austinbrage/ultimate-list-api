@@ -4,7 +4,8 @@ import { type KnowledgeTypes } from "../../types/knowledge"
 type KnowledgeRoutes = (route: KNOWLEDGE) => string
 
 type KnowledgeMock = {
-    newData: Omit<KnowledgeTypes['fullData'], "user_id">
+    newData1: Omit<KnowledgeTypes['data'], "user_id">
+    newData2: Omit<KnowledgeTypes['data'], "user_id">
     changedData: Omit<KnowledgeTypes['fullData'], "user_id">
     name: (knowledgeId: number) => KnowledgeTypes['idName']
     type: (knowledgeId: number) => KnowledgeTypes['idType']
@@ -18,14 +19,18 @@ export const knowledgeRoutes: KnowledgeRoutes = (route) => {
 }
 
 export const knowledgeMock: KnowledgeMock = {
-    newData: {
-        priority: 1,
+    newData1: {
         type: 'Backend',
         name: 'Express framework',
         description: 'Lorem ipsum'
     },
+    newData2: {
+        type: 'Backend',
+        name: 'Nest framework',
+        description: 'Lorem ipsum'
+    },
     changedData: {
-        priority: 2,
+        priority: 3,
         type: 'Deployment',
         name: 'Docker',
         description: 'App containerization'
@@ -40,7 +45,7 @@ export const knowledgeMock: KnowledgeMock = {
     }),
     priority: (knowledgeId: number) => ({
         id: knowledgeId,
-        priority: 2
+        priority: 3
     }),
     description: (knowledgeId: number) => ({
         id: knowledgeId,

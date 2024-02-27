@@ -33,7 +33,7 @@ describe('Test create and read new knowledge card', () => {
         await request(app)
             .post(knowledgeRoutes(KNOWLEDGE.DATA))
             .set('Authorization', `Bearer ${token}`)
-            .send(knowledgeMock.newData)
+            .send(knowledgeMock.newData1)
             .expect(201)
     })
 
@@ -45,7 +45,7 @@ describe('Test create and read new knowledge card', () => {
         knowledgeId = response.body?.result?.data[0]?.id
 
         expect(response.body.result.data[0]).toEqual(
-            expect.objectContaining(knowledgeMock.newData)
+            expect.objectContaining(knowledgeMock.newData1)
         )         
     })
 
@@ -98,6 +98,33 @@ describe('Test update new knowledge card', () => {
 
 })
 
+describe('Test priority value on new knowledge card', () => {
+
+    test('should POST new knowledge card', async () => {
+        await request(app)
+            .post(knowledgeRoutes(KNOWLEDGE.DATA))
+            .set('Authorization', `Bearer ${token}`)
+            .send(knowledgeMock.newData2)
+            .expect(201)
+    })
+
+    test('should READ and GET ID from new knowledge card', async () => {
+        const response = await request(app)
+            .get(knowledgeRoutes(KNOWLEDGE.DATA))
+            .set('Authorization', `Bearer ${token}`)
+            .expect(200)
+        knowledgeId = response.body?.result?.data[0]?.id
+
+        expect(response.body.result.data[0]).toEqual(
+            expect.objectContaining({
+                ...knowledgeMock.newData2,
+                priority: knowledgeMock.priority(knowledgeId).priority + 1
+            })
+        )         
+    })
+
+})
+
 describe('Test delete new knowledge card', () => {
 
     test('should DELETE new knowledge card', async () => {
@@ -108,13 +135,13 @@ describe('Test delete new knowledge card', () => {
             .expect(200)
     })
 
-    test('should READ no data from deleted knowledge card', async () => {
+    test('should READ only one card after deleted knowledge', async () => {
         const response = await request(app)
             .get(knowledgeRoutes(KNOWLEDGE.DATA))
             .set('Authorization', `Bearer ${token}`)
             .expect(200)
 
-        expect(response.body.result.data).toHaveLength(0)
+        expect(response.body.result.data).toHaveLength(1)
     })     
 
 })
