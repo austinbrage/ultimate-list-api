@@ -54,7 +54,7 @@ describe('Test create and read new knowledge concept', () => {
         await request(app)
             .post(conceptRoutes(CONCEPT.DATA))
             .set('Authorization', `Bearer ${token}`)
-            .send(conceptMock.newData(knowledgeId))
+            .send(conceptMock.newData1(knowledgeId))
             .expect(201)
     })
 
@@ -67,13 +67,11 @@ describe('Test create and read new knowledge concept', () => {
         conceptId = response.body?.result?.data[0]?.id
 
         expect(response.body.result.data[0]).toEqual(
-            expect.objectContaining(conceptMock.newData(knowledgeId))
+            expect.objectContaining(conceptMock.newData1(knowledgeId))
         )         
     })
 
 })
-
-
 
 describe('Test update new knowledge concept', () => {
 
@@ -123,6 +121,35 @@ describe('Test update new knowledge concept', () => {
 
 })
 
+
+describe('Test priority value of new knowledge concept', () => {
+
+    test('should POST new knowledge concept', async () => {
+        await request(app)
+            .post(conceptRoutes(CONCEPT.DATA))
+            .set('Authorization', `Bearer ${token}`)
+            .send(conceptMock.newData2(knowledgeId))
+            .expect(201)
+    })
+
+    test('should READ and GET ID from new knowledge concept', async () => {
+        const response = await request(app)
+            .get(conceptRoutes(CONCEPT.DATA))
+            .set('Authorization', `Bearer ${token}`)
+            .query(conceptMock.knowledgeId(knowledgeId))
+            .expect(200)
+        conceptId = response.body?.result?.data[0]?.id
+
+        expect(response.body.result.data[0]).toEqual(
+            expect.objectContaining({
+                ...conceptMock.newData2(knowledgeId),
+                priority: conceptMock.priority(conceptId).priority + 1
+            })
+        )         
+    })
+
+})
+
 describe('Test delete new knowledge concept', () => {
 
     test('should DELETE new knowledge concept', async () => {
@@ -140,7 +167,7 @@ describe('Test delete new knowledge concept', () => {
             .query(conceptMock.knowledgeId(knowledgeId))
             .expect(200)
 
-        expect(response.body.result.data).toHaveLength(0)
+        expect(response.body.result.data).toHaveLength(1)
     })     
 
 })

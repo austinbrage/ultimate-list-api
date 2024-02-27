@@ -4,7 +4,8 @@ import { type ConceptTypes } from "../../types/concepts"
 type ConceptRoutes = (route: CONCEPT) => string
 
 type ConceptMock = {
-    newData: (knowledgeId: number) =>Omit<ConceptTypes['fullData'], "user_id">
+    newData1: (knowledgeId: number) =>Omit<ConceptTypes['data'], "user_id">
+    newData2: (knowledgeId: number) =>Omit<ConceptTypes['data'], "user_id">
     changedData: (knowledgeId: number) =>Omit<ConceptTypes['fullData'], "user_id">
     name: (conceptId: number, knowledgeId: number) => ConceptTypes['idName']
     type: (conceptId: number) => ConceptTypes['idType']
@@ -19,16 +20,21 @@ export const conceptRoutes: ConceptRoutes = (route) => {
 }
 
 export const conceptMock: ConceptMock = {
-    newData: (knowledgeId: number) => ({
+    newData1: (knowledgeId: number) => ({
         knowledge_id: knowledgeId,
-        priority: 1,
         type: 'Core',
         name: 'Backend framework for Restful APIs',
         description: 'Lorem ipsum'
     }),
+    newData2: (knowledgeId: number) => ({
+        knowledge_id: knowledgeId,
+        type: 'Core',
+        name: 'Allows json parsing and app routing',
+        description: 'Lorem ipsum'
+    }),
     changedData: (knowledgeId: number) => ({
         knowledge_id: knowledgeId,
-        priority: 2,
+        priority: 3,
         type: 'Example',
         name: 'Adding routes',
         description: 'app.use(/data, controller.addData)'
@@ -44,7 +50,7 @@ export const conceptMock: ConceptMock = {
     }),
     priority: (conceptId: number) => ({
         id: conceptId,
-        priority: 2
+        priority: 3
     }),
     description: (conceptId: number) => ({
         id: conceptId,
