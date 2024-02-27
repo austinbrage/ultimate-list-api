@@ -135,7 +135,7 @@ describe('Test delete new research card', () => {
             .expect(200)
     })
 
-    test('should READ no data from deleted research card', async () => {
+    test('should READ only one card after deleted research', async () => {
         const response = await request(app)
             .get(researchRoutes(RESEARCH.DATA))
             .set('Authorization', `Bearer ${token}`)

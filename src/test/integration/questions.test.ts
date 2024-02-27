@@ -155,7 +155,7 @@ describe('Test delete new question item', () => {
             .expect(200)
     })
 
-    test('should READ no data from deleted question item', async () => {
+    test('should READ only one item after deleted question', async () => {
         const response = await request(app)
             .get(questionRoutes(QUESTION.DATA))
             .set('Authorization', `Bearer ${token}`)

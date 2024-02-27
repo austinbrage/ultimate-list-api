@@ -160,7 +160,7 @@ describe('Test delete new knowledge concept', () => {
             .expect(200)
     })
 
-    test('should READ no data from deleted knowledge concept', async () => {
+    test('should READ only one item after deleted knowledge concept', async () => {
         const response = await request(app)
             .get(conceptRoutes(CONCEPT.DATA))
             .set('Authorization', `Bearer ${token}`)
