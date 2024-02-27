@@ -35,6 +35,7 @@ const idPriority = knowledgeConceptTableSchema.pick({ id: true, priority: true }
 const knowledgeIdName = knowledgeConceptTableSchema.pick({ knowledge_id: true, name: true })
 const idDescription = knowledgeConceptTableSchema.pick({ id: true, description: true })
 const fullData = knowledgeConceptTableSchema.omit({ id: true })
+const data = knowledgeConceptTableSchema.omit({ id: true, priority: true })
 
 export const conceptSchema = {
     id,
@@ -44,7 +45,8 @@ export const conceptSchema = {
     idPriority,
     knowledgeIdName,
     idDescription,
-    fullData
+    fullData,
+    data
 }
 
 const knowledgeConceptQuerySchema = z.object({

@@ -108,8 +108,8 @@ export class Concepts implements ConceptController {
     })
 
     addNew = asyncErrorHandler(async (req: Request, res: Response) => {
-        // const { knowledge_id, type, name, priority, description } = req.body
-        const validation = this.validateConcept.fullData(req.body)
+        // const { knowledge_id, type, name, description } = req.body
+        const validation = this.validateConcept.data(req.body)
 
         if(!validation.success) return this.validationErr(res, validation.error)
 
@@ -124,7 +124,13 @@ export class Concepts implements ConceptController {
             }))
         }
 
-        await this.conceptModel.addNew(validation.data)
+        const resultPriority = await this.conceptModel.getPriority({
+            knowledge_id: validation.data.knowledge_id
+        })
+
+        const newPriority = resultPriority[0]?.priority + 1 ?? 1
+
+        await this.conceptModel.addNew({...validation.data, priority: newPriority})
 
         return res.status(201).json(createOkResponse({
             message: 'New knowledge-concept created successfully'

@@ -33,6 +33,18 @@ class Concept implements IConcept {
         return rows as RowDataPacket[]
     }
 
+    getPriority = async ({ knowledge_id }: ConceptTypes['knowledgeId']) => {
+        const connection = await this.pool.getConnection()
+
+        const [rows] = await connection.execute(
+            conceptsQueries.getLastPriority,
+            [knowledge_id]
+        )
+
+        connection.release()
+        return rows as RowDataPacket[]
+    }
+
     changePriority = async ({ id, priority }: ConceptTypes['idPriority']) => {
         const connection = await this.pool.getConnection()
 

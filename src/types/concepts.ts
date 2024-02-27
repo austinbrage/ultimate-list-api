@@ -5,6 +5,7 @@ import { type AsyncFunction } from '../services/errorHandler'
 
 export type ConceptTypes = {
     id: z.infer<typeof conceptSchema.id>
+    data: z.infer<typeof conceptSchema.data>
     knowledgeId: z.infer<typeof conceptSchema.knowledgeId>
     idType: z.infer<typeof conceptSchema.idType>
     idName: z.infer<typeof conceptSchema.idName>
@@ -18,6 +19,7 @@ export type ConceptTypes = {
 export interface IConcept {
     getAll({ knowledge_id }: ConceptTypes['knowledgeId']): Promise<RowDataPacket[]>
     getName({ knowledge_id, name }: ConceptTypes['knowledgeIdName']): Promise<RowDataPacket[]>
+    getPriority({ knowledge_id }: ConceptTypes['knowledgeId']): Promise<RowDataPacket[]>
     changePriority({ id, priority }: ConceptTypes['idPriority']): Promise<RowDataPacket[]>
     changeType({ id, type }: ConceptTypes['idType']): Promise<RowDataPacket[]>
     changeName({ id, name }: ConceptTypes['idName']): Promise<RowDataPacket[]>
