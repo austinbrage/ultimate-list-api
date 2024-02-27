@@ -7,6 +7,11 @@
     SELECT `id` FROM `knowledge_concepts`
     WHERE `knowledge_id` = ? AND `name` = ?;
 
+-- getLastPriority
+    SELECT `priority` FROM `knowledge_concepts`
+    WHERE `knowledge_id` = ?
+    ORDER BY `priority` DESC LIMIT 1;
+
 -- addNew    
     INSERT INTO `knowledge_concepts` (`knowledge_id`, `type`, `name`, `priority`, `description`)
     VALUES (?, ?, ?, ?, ?);

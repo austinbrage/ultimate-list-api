@@ -1,6 +1,7 @@
 export interface conceptsInterface {
   getAll: string
   getName: string
+  getLastPriority: string
   addNew: string
   changePriority: string
   changeType: string
@@ -11,6 +12,7 @@ export interface conceptsInterface {
 export const conceptsQueries: conceptsInterface = {
   "getAll": "SELECT * FROM `knowledge_concepts` WHERE `knowledge_id` = ? ORDER BY `priority` DESC; ",
   "getName": "SELECT `id` FROM `knowledge_concepts` WHERE `knowledge_id` = ? AND `name` = ?; ",
+  "getLastPriority": "SELECT `priority` FROM `knowledge_concepts` WHERE `knowledge_id` = ? ORDER BY `priority` DESC LIMIT 1; ",
   "addNew": "INSERT INTO `knowledge_concepts` (`knowledge_id`, `type`, `name`, `priority`, `description`) VALUES (?, ?, ?, ?, ?); ",
   "changePriority": "UPDATE `knowledge_concepts` SET `priority` = ? WHERE `id` = ?; ",
   "changeType": "UPDATE `knowledge_concepts` SET `type` = ? WHERE `id` = ?; ",
