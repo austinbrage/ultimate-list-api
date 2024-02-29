@@ -1,7 +1,7 @@
 import bcript from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { CustomError } from '../helpers/customError'
-import type { IUser, UserType } from '../types/users'
+import type { IUser, UserType } from '../routes/users/types/users'
 import type { Response, NextFunction } from 'express'
 import { OAuth2Client } from 'google-auth-library'
 import { CLIENT_ID, CLIENT_SECRET, ENVIRONMENT } from '../utils/config'
