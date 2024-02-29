@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev src/server.ts",
     "build": "npm run add-queries:ts && tsc",
-    "add-queries:ts": "node node_modules/dynamic-sql/src/index_types",
+    "add-queries": "npx add-queries-brage",
     "lint": "eslint ./src/**/*.{js,ts}",
     "ts-check": "tsc -p tsconfig.json --noEmit",
     "test:users": "cross-env NODE_ENV=test jest users.test.ts",
