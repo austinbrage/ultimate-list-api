@@ -1,4 +1,4 @@
-import { APP, RESOURCES, type USER } from "../../types/allRoutes"
+import { APP, RESOURCES, type USER } from "../../../apiRoutes"
 import { type UserType } from "../../types/users"
 
 type UserRoutes = (route: USER) => string

@@ -1,4 +1,4 @@
-import { APP, RESOURCES, type KNOWLEDGE } from "../../types/allRoutes"
+import { APP, RESOURCES, type KNOWLEDGE } from "../../../apiRoutes"
 import { type KnowledgeTypes } from "../../types/knowledge"
 
 type KnowledgeRoutes = (route: KNOWLEDGE) => string
