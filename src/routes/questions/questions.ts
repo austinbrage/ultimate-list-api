@@ -1,8 +1,8 @@
 import { Router } from "express"
 import { QUESTION as Q } from "../apiRoutes"
-import { Questions as QuestionController } from "../../controllers/Questions"
+import { Questions as QuestionController } from "./controller/Questions"
 import createAuthorization from "../../auth/authorization"
-import type { IQuestion } from "../../types/questions"
+import type { IQuestion } from "./types/questions"
 
 const createQuestionRouter = ({ questionModel }: { questionModel: IQuestion }) => {
     const questionRouter = Router()
