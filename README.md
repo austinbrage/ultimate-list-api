@@ -11,18 +11,20 @@ The API will be available at `http://localhost:3000`.
 
 The API relies on headers, sending the signed token within the response body and receiving the same token within the authorization header, which must be stored manually in the client application.
 
-## API Route
+## API Routes
 
 | Endpoint  | Description | 
 | ------ | ------ |
 | **`/ultimate-list`** | API Version 1 |
+
+## Healthcare Routes
 
 | Endpoint | Queries | Description | 
 | ------ | ------ | ------ |
 | **GET ***`/ping/api`***** | none | Verify API connection |
 | **GET ***`/ping/database`***** | none | Verify DB connection |
 
-## User Routes
+## Users Routes
 
 | Endpoint | Queries | Description | 
 | ------ | ------ | ------ |
@@ -37,74 +39,23 @@ The API relies on headers, sending the signed token within the response body and
 | **PATCH ***`/user/password`***** | password, **token** | Change user password |
 | **DELETE ***`/user/data`***** | **token** | Remove user |
 
-## Knowledge Routes
+## Study Routes
 
-| Endpoint | Queries | Description | 
-| ------ | ------ | ------ |
-| **GET ***`/knowledge/data`***** | **token** | Get all data from knowledge |
-| **POST ***`/knowledge/data`***** | name, type, description, **token** | Add new knowledge |
-| **PATCH ***`/knowledge/name`***** | id, name, **token** | Change knowledge name |
-| **PATCH ***`/knowledge/type`***** | id, type, **token** | Change knowledge type |
-| **PATCH ***`/knowledge/priority`***** | id, priority, **token** | Change knowledge priority |
-| **PATCH ***`/knowledge/description`***** | id, description, **token** | Change knowledge description |
-| **DELETE ***`/knowledge/data`***** | id, **token** | Remove knowledge |
+**[Check complete routes here](https://github.com/austinbrage/ultimate-list-api/blob/main/docs/study-tables/README.md)**
 
-## Knowledge Concepts Routes
+| Group of Endpoints | Description | 
+| ------ | ------ |
+| **`/user`** | CRUD Operations on users table |
+| **`/knowledge`** | CRUD Operations on knowledge table |
+| **`/concept`** | CRUD Operations on knowledge_concepts table |
+| **`/research`** | CRUD Operations on researchs table |
+| **`/question`** | CRUD Operations on research_questions table |
+| **`/answer`** | CRUD Operations on research_question_answers table |
 
-| Endpoint | Queries | Description | 
-| ------ | ------ | ------ |
-| **GET ***`/concept/data`***** | knowledge_id, **token** | Get all data from concept |
-| **POST ***`/concept/data`***** | knowledge_id, name, type, description, **token** | Add new concept |
-| **PATCH ***`/concept/name`***** | knowledge_id, id, name, **token** | Change concept name |
-| **PATCH ***`/concept/type`***** | id, type, **token** | Change concept type |
-| **PATCH ***`/concept/priority`***** | id, priority, **token** | Change concept priority |
-| **PATCH ***`/concept/description`***** | id, description, **token** | Change concept description |
-| **DELETE ***`/concept/data`***** | id, **token** | Remove concept |
+## Work Routes
 
-## Research Routes
+**[Check complete routes here](https://github.com/austinbrage/ultimate-list-api/blob/main/docs/work-tables/README.md)**
 
-| Endpoint | Queries | Description | 
-| ------ | ------ | ------ |
-| **GET ***`/research/data`***** | **token** | Get all data from research |
-| **POST ***`/research/data`***** | name, type, description, **token** | Add new research |
-| **PATCH ***`/research/name`***** | id, name, **token** | Change research name |
-| **PATCH ***`/research/type`***** | id, type, **token** | Change research type |
-| **PATCH ***`/research/priority`***** | id, priority, **token** | Change research priority |
-| **PATCH ***`/research/description`***** | id, description, **token** | Change research description |
-| **DELETE ***`/research/data`***** | id, **token** | Remove research |
-
-## Research Questions Routes
-
-| Endpoint | Queries | Description | 
-| ------ | ------ | ------ |
-| **GET ***`/question/data`***** | research_id, **token** | Get all data from question |
-| **POST ***`/question/data`***** | research_id, name, description, **token** | Add new question |
-| **PATCH ***`/question/name`***** | research_id, id, name, **token** | Change question name |
-| **PATCH ***`/question/priority`***** | id, priority, **token** | Change question priority |
-| **PATCH ***`/question/description`***** | id, description, **token** | Change question description |
-| **DELETE ***`/question/data`***** | id, **token** | Remove question |
-
-## Research Question Answers Routes
-
-| Endpoint | Queries | Description | 
-| ------ | ------ | ------ |
-| **GET ***`/answer/data`***** | question_id, **token** | Get all data from answer |
-| **POST ***`/answer/data`***** | question_id, name, type, description, **token** | Add new answer |
-| **PATCH ***`/answer/name`***** | question_id, id, name, **token** | Change answer name |
-| **PATCH ***`/answer/type`***** | id, type, **token** | Change answer type |
-| **PATCH ***`/answer/priority`***** | id, priority, **token** | Change answer priority |
-| **PATCH ***`/answer/description`***** | id, description, **token** | Change answer description |
-| **DELETE ***`/answer/data`***** | id, **token** | Remove answer |
-
-## Ideas Routes
-
-| Endpoint | Queries | Description | 
-| ------ | ------ | ------ |
-| **GET ***`/idea/data`***** | **token** | Get all data from idea |
-| **POST ***`/idea/data`***** | name, type, description, solved_problem, **token** | Add new idea |
-| **PATCH ***`/idea/name`***** | id, name, **token** | Change idea name |
-| **PATCH ***`/idea/type`***** | id, type, **token** | Change idea type |
-| **PATCH ***`/idea/priority`***** | id, priority, **token** | Change idea priority |
-| **PATCH ***`/idea/description`***** | id, description, **token** | Change idea description |
-| **PATCH ***`/idea/solved-problem`***** | id, solved_problem, **token** | Change idea solved problem |
-| **DELETE ***`/idea/data`***** | id, **token** | Remove idea |
+| Group of Endpoints | Description | 
+| ------ | ------ |
+| **`/idea`** | CRUD Operations on ideas table |
