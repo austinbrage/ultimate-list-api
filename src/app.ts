@@ -1,5 +1,6 @@
 import express, { json, Router } from 'express'
 import createUserRouter from './routes/users/users'
+import createIdeaRouter from './routes/ideas/ideas'
 import createAnswerRouter from './routes/answers/answers'
 import createQuestionRouter from './routes/questions/questions'
 import createConceptRouter from './routes/concepts/concepts'
@@ -15,6 +16,7 @@ import { type IResearch } from './routes/researchs/types/researchs'
 import { type IQuestion } from './routes/questions/types/questions'
 import { type IConcept } from './routes/concepts/types/concepts'
 import { type IAnswer } from './routes/answers/types/answers'
+import { type IIdea } from './routes/ideas/types/ideas'
 import { type IUser } from './routes/users/types/users'
 import { type Pool } from 'mysql2/promise'
 
@@ -24,12 +26,14 @@ type ModelsType = {
     questionModel: IQuestion
     conceptModel: IConcept
     answerModel: IAnswer
+    ideaModel: IIdea
     userModel: IUser
     pingPool: Pool
 }
 
 const createApp = ({ 
     userModel, 
+    ideaModel,
     knowledgeModel, 
     researchModel, 
     questionModel, 
@@ -46,6 +50,7 @@ const createApp = ({
     
     mainRouter.use(RESOURCES.PING,          createHealthcareRouter({ pingPool }))
     mainRouter.use(RESOURCES.USER,          createUserRouter({ userModel }))
+    mainRouter.use(RESOURCES.IDEA,          createIdeaRouter({ ideaModel }))
     mainRouter.use(RESOURCES.KNOWLEDGE,     createKnowledgeRouter({ knowledgeModel }))
     mainRouter.use(RESOURCES.CONCEPT,       createConceptRouter({ conceptModel }))
     mainRouter.use(RESOURCES.RESEARCH,      createResearchRouter({ researchModel }))
