@@ -80,3 +80,18 @@ CREATE TABLE `research_question_answers` (
  	UNIQUE KEY             `question_id_name_unique` (`question_id`,`name`),
  	FOREIGN KEY            (`question_id`) REFERENCES `research_questions`(`id`) ON DELETE CASCADE 
 );
+
+-- 07 Ideas Table
+CREATE TABLE `ideas` (
+ 	`id`                   INT AUTO_INCREMENT PRIMARY KEY,
+ 	`user_id`              INT NOT NULL,
+ 	`priority`             INT NOT NULL DEFAULT 1,
+ 	`type`                 VARCHAR(250) NOT NULL DEFAULT 'Application', 	
+ 	`name`                 VARCHAR(250) NOT NULL DEFAULT 'Unnamed idea',
+ 	`description`          TEXT NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 	
+ 	`solved_problem`       VARCHAR(250) NOT NULL DEFAULT 'Lorem ipsum dolor sit amet', 	
+ 	`created_at`           TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`           TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ 	UNIQUE KEY             `user_id_name_unique` (`user_id`,`name`),
+ 	FOREIGN KEY            (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE 
+); 
