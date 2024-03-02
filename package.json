@@ -6,9 +6,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev src/server.ts",
-    "build": "npm run add-queries:ts && tsc",
-    "add-queries": "npx add-queries-brage",
+    "build": "npm run add-queries && tsc",
     "lint": "eslint ./src/**/*.{js,ts}",
+    "add-queries": "npx add-queries-brage",
     "typescheck": "tsc -p tsconfig.json --noEmit",
     "test:users": "cross-env NODE_ENV=test jest users.test.ts",
     "test:ideas": "cross-env NODE_ENV=test jest ideas.test.ts",
