@@ -1,18 +1,3 @@
-## User Routes
-
-| Endpoint | Queries | Description | 
-| ------ | ------ | ------ |
-| **GET ***`/user/data`***** | **token** | Get all data from user |
-| **POST ***`/user/key`***** | api_key | Sign in user ***(get token)*** |
-| **POST ***`/user/login`***** | name, password | Sign in user ***(get token)*** |
-| **POST ***`/user/oauth`***** | auth_provider, code | Open Auth User ***(get token)*** |
-| **POST ***`/user/register`***** | name, password, email, nickname | Sign up user  ***(get token)***  |
-| **PATCH ***`/user/name`***** | name, **token** | Change user name |
-| **PATCH ***`/user/email`***** | email, **token** | Change user email |
-| **PATCH ***`/user/nickname`***** | nickname, **token** | Change user nickname name |
-| **PATCH ***`/user/password`***** | password, **token** | Change user password |
-| **DELETE ***`/user/data`***** | **token** | Remove user |
-
 ## Knowledge Routes
 
 | Endpoint | Queries | Description | 
