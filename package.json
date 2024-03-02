@@ -9,7 +9,7 @@
     "build": "npm run add-queries:ts && tsc",
     "add-queries": "npx add-queries-brage",
     "lint": "eslint ./src/**/*.{js,ts}",
-    "ts-check": "tsc -p tsconfig.json --noEmit",
+    "typescheck": "tsc -p tsconfig.json --noEmit",
     "test:users": "cross-env NODE_ENV=test jest users.test.ts",
     "test:ideas": "cross-env NODE_ENV=test jest ideas.test.ts",
     "test:answers": "cross-env NODE_ENV=test jest answers.test.ts",
