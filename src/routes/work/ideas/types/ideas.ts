@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { ideaSchema } from "../schemas/ideas"
 import { type RowDataPacket, type ResultSetHeader } from 'mysql2'
-import { type AsyncFunction } from '../../../services/errorHandler'
+import { type AsyncFunction } from '../../../../services/errorHandler'
 
 export type IdeaTypes = {
     id: z.infer<typeof ideaSchema.id>

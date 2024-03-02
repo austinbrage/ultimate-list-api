@@ -1,5 +1,5 @@
-import { asyncErrorHandler } from '../../../services/errorHandler'
-import { createOkResponse, createErrorResponse } from '../../../helpers/appResponse'
+import { asyncErrorHandler } from '../../../../services/errorHandler'
+import { createOkResponse, createErrorResponse } from '../../../../helpers/appResponse'
 import { IdeaValidation, type IIdeaValidation } from '../validations/Ideas' 
 import type { Request, Response, NextFunction } from 'express'
 import type { IdeaController } from '../types/ideas'

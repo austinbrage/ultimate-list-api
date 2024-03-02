@@ -1,6 +1,6 @@
 import createApp from './app'
-import IdeaModel from './routes/ideas/model/Idea'
 import UserModel from './routes/users/model/User'
+import IdeaModel from './routes/work/ideas/model/Idea'
 import AnwswerModel from './routes/study/answers/model/Answer'
 import ConceptModel from './routes/study/concepts/model/Concept'
 import QuestionModel from './routes/study/questions/model/Question'

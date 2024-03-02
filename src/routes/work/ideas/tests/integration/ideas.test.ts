@@ -1,8 +1,8 @@
 import request from "supertest"
-import { app, server, userPool, ideaPool } from '../../../../server'
+import { app, server, userPool, ideaPool } from '../../../../../server'
 import { ideaMock, ideaRoutes } from "../fixtures/ideaData"
-import { userMock, userRoutes } from "../../../users/tests/fixtures/userData"
-import { IDEA, USER } from "../../../apiRoutes"
+import { userMock, userRoutes } from "../../../../users/tests/fixtures/userData"
+import { IDEA, USER } from "../../../../apiRoutes"
 
 let token: string
 let ideaId: number

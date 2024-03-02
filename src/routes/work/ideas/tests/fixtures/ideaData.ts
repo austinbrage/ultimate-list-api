@@ -1,4 +1,4 @@
-import { APP, RESOURCES, type IDEA } from "../../../apiRoutes"
+import { APP, RESOURCES, type IDEA } from "../../../../apiRoutes"
 import { type IdeaTypes } from "../../types/ideas"
 
 type IdeaRoutes = (route: IDEA) => string

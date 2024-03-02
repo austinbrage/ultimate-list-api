@@ -1,7 +1,7 @@
 import { Router } from "express"
-import { IDEA as I } from "../apiRoutes"
+import { IDEA as I } from "../../apiRoutes"
 import { Ideas as IdeaController } from "./controller/Ideas"
-import createAuthorization from "../../auth/authorization"
+import createAuthorization from "../../../auth/authorization"
 import type { IIdea } from "./types/ideas"
 
 const createIdeaRouter = ({ ideaModel }: { ideaModel: IIdea }) => {
